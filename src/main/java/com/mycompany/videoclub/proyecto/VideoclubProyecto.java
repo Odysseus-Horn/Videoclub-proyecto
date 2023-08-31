@@ -34,7 +34,10 @@ public class VideoclubProyecto {
       while(true) {
 
          //crearCliente(lector, videoclub);
+         System.out.println("Ingrese su nombre de cliente:");
          String nombre = lector.readLine();
+
+         System.out.println("Ingrese su saldo inicial: ");
          Double saldo = Double.parseDouble(lector.readLine());
 
          Cliente client = new Cliente(nombre, saldo);
