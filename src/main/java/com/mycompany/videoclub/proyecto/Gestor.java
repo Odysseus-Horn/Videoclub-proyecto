@@ -63,19 +63,29 @@ public class Gestor{
     }
     
 
-/* 
+
     public void importarClientes(String archivo)
     {
-        try(BufferedReader reader = new BufferedReader(new FileReader(archivo))
-        {
-            
-            while(line = reader.readLine() != null)
-            {
+        try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length >= 2) {
+                    // Asignación de los datos del cliente
+                    String nombreUsuario = parts[0];
+                    double saldo = Double.parseDouble(parts[1].trim());
 
+                    // Crear un objeto Cliente y agregarlo a la lista y al mapa
+                    Cliente cliente = new Cliente(nombreUsuario, saldo);
+                    agregarCliente(cliente);
+                }
             }
-        }
+        } 
+        catch (IOException e) {
+            e.printStackTrace();
+        }    
     }
-*/
+
     
     public boolean agregarCliente(Cliente cliente)
     {
@@ -151,6 +161,12 @@ public class Gestor{
         }
 
 
+    }
+
+    public void devolverPeliculas(String nombre, String pelicula)
+    {
+           
+        
     }
     
     public Pelicula buscarPeliculaPorNombre(String nombre) {

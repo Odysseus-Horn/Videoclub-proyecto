@@ -30,22 +30,18 @@ public class VideoclubProyecto {
 
       videoclub.importarPeliculas(csvPeliculas);
       
-      // Menu del usuario
-      while(true) {
-
-         //crearCliente(lector, videoclub);
-         System.out.println("Ingrese su nombre de cliente:");
+        System.out.println("Ingrese su nombre de cliente:");
          String nombre = lector.readLine();
 
          System.out.println("Ingrese su saldo inicial: ");
          Double saldo = Double.parseDouble(lector.readLine());
-
          Cliente client = new Cliente(nombre, saldo);
-
          videoclub.agregarCliente(client);
+      // Menu del usuario
+      while(true) {
 
-
-
+         //crearCliente(lector, videoclub);
+        
          System.out.println("Selecciona una opción:");
          System.out.println("1. Mostrar Catálogo");
          System.out.println("2. Arrendar Película");
@@ -63,6 +59,7 @@ public class VideoclubProyecto {
                break;
             case 3:
                // Lógica para devolver película
+                videoclub.devolverPeliculas();
                break;
             case 4:
                System.out.println("Saliendo del programa.");
@@ -88,6 +85,7 @@ public class VideoclubProyecto {
          System.out.println("Ingrese el nombre de una pelicula valida");
       }
    }
+   
    /* FUNCION HECHA PARA OPTIMIZACION
    private static void crearCliente(BufferedReader lector, Gestor videoClub) throws IOException {
 
@@ -99,6 +97,8 @@ public class VideoclubProyecto {
 
       videoClub.agregarCliente(client);
       
+   IMPORTAR CLIENTE
+   DEVOLVER PELICULA - SACARSELA DE LA LISTA CLIENTE - AGREGAR UNA EXISTENCIA AL PELICULAS EXISTENTE
    }
    */
 }
