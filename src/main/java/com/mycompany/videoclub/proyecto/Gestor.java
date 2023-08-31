@@ -25,17 +25,14 @@ public class Gestor{
         return listaPeliculas.get(index);
     }
 
-    //setters
+    //Métodos 
 
-    public void setListaPeliculas(Pelicula pelicula)
+    public void agregarPelicula(Pelicula pelicula)
     {
         listaPeliculas.add(pelicula);
     }
 
-    public void setListaClientes(Cliente cliente)
-    {
-        listaClientes.add(cliente);
-    }
+
 
     public void importarPeliculas(String archivo){
         try(BufferedReader reader = new BufferedReader(new FileReader(archivo))){
@@ -71,6 +68,39 @@ public class Gestor{
             e.printStackTrace();
         }
 
+    }
+
+/* 
+    public void importarClientes(String archivo)
+    {
+        try(BufferedReader reader = new BufferedReader(new FileReader(archivo))
+        {
+            
+            while(line = reader.readLine() != null)
+            {
+
+            }
+        }
+    }
+*/
+
+
+
+    public void mostrarClientes() {
+        System.out.println("Lista de clientes:");
+        
+        if (listaClientes.isEmpty()) {
+            System.out.println("La lista de clientes está vacía.");
+        } else 
+        {
+            for (Cliente cliente : listaClientes) {
+                System.out.println("Nombre de usuario: " + cliente.getNombreUsuario());
+                System.out.println("Saldo: " + cliente.getSaldo());
+                System.out.println("Películas en posesión: " + cliente.getSizePeliculasEnPosesion());
+                System.out.println("Total películas arrendadas" + cliente.getSizeHistorialPelicula());
+                System.out.println("----------------------");
+            }
+        }
     }
 
 }

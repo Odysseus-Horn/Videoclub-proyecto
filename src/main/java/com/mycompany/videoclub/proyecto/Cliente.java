@@ -25,13 +25,23 @@ public class Cliente {
         return saldo;
     }
 
-    public Pelicula getHistorialPelicula(short index) {
-        return historialPeliculas.get(index);
+    public ArrayList<Pelicula> getHistorialPelicula(short index) {
+        return historialPeliculas;
     }
 
-    public Pelicula getPeliculasenPosesion(short index)
+    public int getSizeHistorialPelicula()
     {
-        return peliculasEnPosesion.get(index);
+        return historialPeliculas.size();
+    }
+
+    public int getSizePeliculasEnPosesion()
+    {
+        return peliculasEnPosesion.size();
+    }
+
+    public ArrayList<Pelicula> getPeliculasenPosesion()
+    {
+        return peliculasEnPosesion;
     }
 
     //setter

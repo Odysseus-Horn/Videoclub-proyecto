@@ -10,8 +10,12 @@ package com.mycompany.videoclub.proyecto;
  */
 public class VideoclubProyecto {
 
-   public static void main(String[] args){
-       
-       System.out.println("holi ");
+   public static void main(String[] args)
+   {
+        Gestor videoclub = new Gestor();
+        videoclub.importarPeliculas("datos/Peliculas.csv");
+
+        
+
    }
 }
