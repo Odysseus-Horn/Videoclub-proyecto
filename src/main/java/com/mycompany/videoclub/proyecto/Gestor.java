@@ -87,8 +87,41 @@ public class Gestor{
         }
     }
 */
-
-
+    
+    public boolean agregarCliente(Cliente cliente)
+    {
+         if(mapaClientes.containsKey(cliente.getNombreUsuario()))
+         {
+             return false;
+         }
+         else
+         {
+             mapaClientes.put(cliente.getNombreUsuario(), cliente);
+             listaClientes.add(cliente);
+ 
+             return true;
+         }
+    }
+ 
+    public boolean eliminarCliente(String key) {
+         Cliente clienteAEliminar = null;
+     
+         
+         for (Cliente cliente : listaClientes) {
+             if (cliente.getNombreUsuario().equals(key)) {
+                 clienteAEliminar = cliente;
+                 break;
+             }
+         }
+     
+         if (clienteAEliminar != null) {
+             listaClientes.remove(clienteAEliminar);
+             mapaClientes.remove(key);
+             return true;
+         } else {
+             return false; 
+         }
+    }
 
     public void mostrarClientes() {
         System.out.println("Lista de clientes:");
