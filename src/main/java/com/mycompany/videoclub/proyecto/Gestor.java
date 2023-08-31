@@ -152,6 +152,16 @@ public class Gestor{
 
 
     }
+    /* 
+    public Pelicula buscarPeliculaPorNombre(String nombre) {
+        for (Pelicula pelicula : listaPeliculas) {
+            if (pelicula.getTitulo().equalsIgnoreCase(nombre)) {
+                return pelicula;
+            }
+        }
+        return null;
+    }
+     */
 
 
 
