@@ -152,7 +152,7 @@ public class Gestor{
 
 
     }
-    /* 
+    
     public Pelicula buscarPeliculaPorNombre(String nombre) {
         for (Pelicula pelicula : listaPeliculas) {
             if (pelicula.getTitulo().equalsIgnoreCase(nombre)) {
@@ -161,7 +161,7 @@ public class Gestor{
         }
         return null;
     }
-     */
+    
 
 
 
