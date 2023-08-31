@@ -1,6 +1,8 @@
 package com.mycompany.videoclub.proyecto;
 
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -8,6 +10,8 @@ import java.io.IOException;
 public class Gestor{
     private ArrayList<Cliente> listaClientes;
     private ArrayList<Pelicula> listaPeliculas;
+    private Map<String, Cliente> mapaClientes = new HashMap<>();
+    private Map<String, Pelicula> mapaPeliculas = new HashMap<>();
 
     public Gestor()
     {
