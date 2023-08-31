@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.videoclub.proyecto;
+import java.nio.file.Paths;
 
 /**
  *
@@ -11,11 +12,16 @@ package com.mycompany.videoclub.proyecto;
 public class VideoclubProyecto {
 
    public static void main(String[] args)
-   {
-        Gestor videoclub = new Gestor();
-        videoclub.importarPeliculas("datos/Peliculas.csv");
+   {  
 
-        
+      String currentFolder = Paths.get("").toAbsolutePath().toString();
+
+      String csvPeliculas = currentFolder + "/src/main/java/com/mycompany/videoclub/proyecto/datos/Peliculas.csv";
+
+        Gestor videoclub = new Gestor();
+        videoclub.importarPeliculas(csvPeliculas);
+
+        videoclub.mostrarPeliculas();
 
    }
 }

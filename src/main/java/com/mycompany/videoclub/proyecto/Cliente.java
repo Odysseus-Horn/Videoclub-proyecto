@@ -11,7 +11,6 @@ public class Cliente {
         this.nombreUsuario = nombreUsuario;
         this.saldo = saldo;
         historialPeliculas = new ArrayList<>();
-
     }
 
     //getter
@@ -54,9 +53,16 @@ public class Cliente {
         saldo = monto;
     }
 
-    public void agregarPelicula(Pelicula peli){
+    public boolean arrendarPelicula(Pelicula peli){
+        if(peli.getExistencias() == 0)
+        {
+            System.out.println("no quedan existencias, por favor espere a que alguien retorne la película");
+            return false;
+        }
+        
         peliculasEnPosesion.add(peli);
         historialPeliculas.add(peli);
+        return true;
     }
 
     

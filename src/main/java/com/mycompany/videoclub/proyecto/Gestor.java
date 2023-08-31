@@ -37,42 +37,31 @@ public class Gestor{
     }
 
 
-
-    public void importarPeliculas(String archivo){
-        try(BufferedReader reader = new BufferedReader(new FileReader(archivo))){
+    public void importarPeliculas(String archivo) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
             String line;
-            while((line = reader.readLine()) != null)
-            {
+            while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
-                if(parts.length >= 7){
-                    
-                    //asignación de los datos
+                if (parts.length >= 6) {
+                    // Asignación de los datos
                     String titulo = parts[0];
                     int year = Integer.parseInt(parts[1].trim());
                     int existencias = Integer.parseInt(parts[2].trim());
                     int precioArriendo = Integer.parseInt(parts[3].trim());
                     float rating = Float.parseFloat(parts[4].trim());
                     String sinopsis = parts[5];
-
-                    System.out.println("Título: " + titulo);
-                    System.out.println("Año: " + year);
-                    System.out.println("Existencias: " + existencias);
-                    System.out.println("Precio de arriendo: " + precioArriendo);
-                    System.out.println("Rating: " + rating);
-                    System.out.println("Sinopsis: " + sinopsis);
-
+    
                     Pelicula peli = new Pelicula(titulo, year, existencias, precioArriendo, rating, sinopsis);
-                    listaPeliculas.add(peli);
+                    listaPeliculas.add(peli); // Agregar a la lista
+    
+                    mapaPeliculas.put(titulo, peli); // Agregar al mapa
                 }
-                
-                
-               
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
+    
 
 /* 
     public void importarClientes(String archivo)
@@ -102,6 +91,9 @@ public class Gestor{
              return true;
          }
     }
+
+    
+
  
     public boolean eliminarCliente(String key) {
          Cliente clienteAEliminar = null;
@@ -139,5 +131,28 @@ public class Gestor{
             }
         }
     }
+
+    public void mostrarPeliculas() {
+        System.out.println("Catálogo de películas del videoclub:");
+        
+        if (listaPeliculas.isEmpty()) {
+            System.out.println("No hay películas por el momento.");
+        } else 
+        {
+            for (Pelicula peli : listaPeliculas) {
+                System.out.println("Título: " + peli.getTitulo());
+                System.out.println("Año: " + peli.getYear());
+                System.out.println("Existencias: " + peli.getExistencias());
+                System.out.println("Valor Arriendo:" + peli.getPrecioArriendo());
+                System.out.println("Rating: " + peli.getRating());
+                System.out.println("Sinopsis: " + peli.getSinopsis());
+                System.out.println("----------------------");
+            }
+        }
+
+
+    }
+
+
 
 }

@@ -66,4 +66,11 @@ public class Pelicula {
   public void setRating(float rating){
     this.rating = rating;
   }
+
+  //operaciones con métodos
+
+  public void reducirExistencias(int quant)
+  {
+    existencias -= quant;
+  }
 }
