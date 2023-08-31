@@ -162,13 +162,13 @@ public class Gestor{
 
 
     }
-
-    public void devolverPeliculas(String nombre, String pelicula)
+/*
+    public void devolverPeliculas(String nombre)
     {
-           
+        
         
     }
-    
+   */
     public Pelicula buscarPeliculaPorNombre(String nombre) {
         for (Pelicula pelicula : listaPeliculas) {
             if (pelicula.getTitulo().equalsIgnoreCase(nombre)) {

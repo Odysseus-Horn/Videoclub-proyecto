@@ -58,8 +58,7 @@ public class VideoclubProyecto {
                arrendar(videoclub, lector,client);
                break;
             case 3:
-               // Lógica para devolver película
-                videoclub.devolverPeliculas();
+                //videoclub.devolverPeliculas(nombre);
                break;
             case 4:
                System.out.println("Saliendo del programa.");
@@ -85,6 +84,7 @@ public class VideoclubProyecto {
          System.out.println("Ingrese el nombre de una pelicula valida");
       }
    }
+   
    
    /* FUNCION HECHA PARA OPTIMIZACION
    private static void crearCliente(BufferedReader lector, Gestor videoClub) throws IOException {
