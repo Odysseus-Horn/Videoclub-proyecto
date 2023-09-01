@@ -73,4 +73,11 @@ public class Pelicula {
   {
     existencias -= quant;
   }
+
+  public void aumentarExistencias(int quant)
+  {
+    existencias += quant;
+  }
+
+
 }

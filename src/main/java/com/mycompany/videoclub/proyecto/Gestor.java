@@ -20,13 +20,13 @@ public class Gestor{
     }
 
     //getters
-    public Cliente getListaClientes(short index){   
-        return listaClientes.get(index);
+    public ArrayList<Cliente> getListaClientes(){   
+        return listaClientes;
     }
 
-    public Pelicula getListaPeliculas(short index)
+    public ArrayList<Pelicula> getListaPeliculas()
     {
-        return listaPeliculas.get(index);
+        return listaPeliculas;
     }
 
     //Métodos 
@@ -150,6 +150,7 @@ public class Gestor{
         } else 
         {
             for (Pelicula peli : listaPeliculas) {
+                System.out.println("----------------------");
                 System.out.println("Título: " + peli.getTitulo());
                 System.out.println("Año: " + peli.getYear());
                 System.out.println("Existencias: " + peli.getExistencias());
@@ -162,14 +163,12 @@ public class Gestor{
 
 
     }
-/*
-    public void devolverPeliculas(String nombre)
-    {
-        
-        
-    }
-   */
+   
     public Pelicula buscarPeliculaPorNombre(String nombre) {
+
+        Pelicula peli = mapaPeliculas.get(nombre);
+        if(peli != null)
+
         for (Pelicula pelicula : listaPeliculas) {
             if (pelicula.getTitulo().equalsIgnoreCase(nombre)) {
                 return pelicula;

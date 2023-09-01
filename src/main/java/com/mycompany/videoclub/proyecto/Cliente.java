@@ -11,6 +11,7 @@ public class Cliente {
         this.nombreUsuario = nombreUsuario;
         this.saldo = saldo;
         historialPeliculas = new ArrayList<>();
+        peliculasEnPosesion = new ArrayList<>();
     }
 
     //getter
@@ -54,15 +55,48 @@ public class Cliente {
     }
 
     public boolean arrendarPelicula(Pelicula peli){
-        if(peli.getExistencias() == 0)
+        if(peli.getExistencias() == 0 || saldo - peli.getPrecioArriendo() < 0)
         {
-            System.out.println("no quedan existencias, por favor espere a que alguien retorne la película");
             return false;
         }
         
         peliculasEnPosesion.add(peli);
         historialPeliculas.add(peli);
         return true;
+    }
+
+    public void mostrarPeliculasEnPosesion() {
+        System.out.println("Películas que has arrendado");
+        
+        if (peliculasEnPosesion.isEmpty()) {
+            System.out.println("No has arrendado ninguna película");
+        } else 
+        {
+            for (Pelicula peli : peliculasEnPosesion) {
+                System.out.println("----------------------");
+                System.out.println("Título: " + peli.getTitulo());
+                System.out.println("Año: " + peli.getYear());
+                System.out.println("Valor Arriendo:" + peli.getPrecioArriendo());
+                System.out.println("Rating: " + peli.getRating());
+                System.out.println("Sinopsis: " + peli.getSinopsis());
+                System.out.println("----------------------");
+            }
+        }
+
+
+    }
+    public boolean devolverPelicula(Pelicula peli, Gestor club)
+    {
+        if(peliculasEnPosesion.contains(peli))
+        {
+            peliculasEnPosesion.remove(peli);
+            return true;
+        }
+        else
+        {
+            System.out.println("No ha arrendado esa película, inténtelo de nuevo");
+            return false;
+        }
     }
 
     

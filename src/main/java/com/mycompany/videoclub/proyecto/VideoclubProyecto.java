@@ -17,12 +17,15 @@ public class VideoclubProyecto {
 
    public static void main(String[] args) throws IOException {  
 
+      //se inicializa el lector y se guarda el path hacia el proyecto
       String currentFolder = Paths.get("").toAbsolutePath().toString();
       BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
 
       int opcion; // inicializamos la variable opcion para las distintas funciones disponibles para el usuario
 
       String csvPeliculas = currentFolder + "/src/main/java/com/mycompany/videoclub/proyecto/datos/Peliculas.csv";
+      String csvClientes = currentFolder + "/src/main/java/com/mycompany/videoclub/proyecto/datos/Peliculas.csv";
+
 
       Gestor videoclub = new Gestor();
       
@@ -30,13 +33,13 @@ public class VideoclubProyecto {
 
       videoclub.importarPeliculas(csvPeliculas);
       
-        System.out.println("Ingrese su nombre de cliente:");
-         String nombre = lector.readLine();
+      System.out.println("Ingrese su nombre de cliente:");
+      String nombre = lector.readLine();
 
-         System.out.println("Ingrese su saldo inicial: ");
-         Double saldo = Double.parseDouble(lector.readLine());
-         Cliente client = new Cliente(nombre, saldo);
-         videoclub.agregarCliente(client);
+      System.out.println("Ingrese su saldo inicial: ");
+      Double saldo = Double.parseDouble(lector.readLine());
+      Cliente client = new Cliente(nombre, saldo);
+      videoclub.agregarCliente(client);
       // Menu del usuario
       while(true) {
 
@@ -55,10 +58,20 @@ public class VideoclubProyecto {
                videoclub.mostrarPeliculas();
                break;
             case 2:
-               arrendar(videoclub, lector,client);
+               videoclub.mostrarPeliculas();
+               System.out.println("Qué pelicula desea arrendar?");
+               String nombreABuscar = lector.readLine();
+               
+               arrendar(videoclub, nombreABuscar,client);
                break;
             case 3:
-                //videoclub.devolverPeliculas(nombre);
+               client.mostrarPeliculasEnPosesion();
+               if(!client.getPeliculasenPosesion().isEmpty())
+               {
+                  System.out.println("qué pelicula del listado desea eliminar?");
+                  String nombreAEliminar = lector.readLine();
+                  devolver(videoclub, nombreAEliminar,client);
+               }
                break;
             case 4:
                System.out.println("Saliendo del programa.");
@@ -71,20 +84,48 @@ public class VideoclubProyecto {
       }
    }
 
-   private static void arrendar(Gestor videoCLub, BufferedReader lector,Cliente client) throws IOException {
 
-      String peli = lector.readLine();
+   private static void arrendar(Gestor videoCLub,String nombre,Cliente client) throws IOException {
 
-      Pelicula pelicula = videoCLub.buscarPeliculaPorNombre(peli);
-
-      if(pelicula != null){
-         client.arrendarPelicula(pelicula);
+      Pelicula pelicula = videoCLub.buscarPeliculaPorNombre(nombre);
+      
+      boolean arrendado = client.arrendarPelicula(pelicula);
+      if(arrendado)
+      {
+         pelicula.reducirExistencias(1);
+         System.out.println("Película agregada con éxito");
       }
-      else{
-         System.out.println("Ingrese el nombre de una pelicula valida");
+      else
+      {
+         System.out.println("la película no tiene existencias o usted no tiene saldo suficiente");
       }
    }
    
+
+   private static void devolver(Gestor videoClub, String nombrePelicula, Cliente client) {
+
+      Pelicula pelicula = videoClub.buscarPeliculaPorNombre(nombrePelicula);
+  
+      if (pelicula != null && client.getPeliculasenPosesion().contains(pelicula)) {
+          boolean devuelto = client.devolverPelicula(pelicula, videoClub);
+  
+          if (devuelto) {
+               pelicula.aumentarExistencias(1);
+              System.out.println("Pelicula devuelta con éxito.");
+          } else {
+              System.out.println("Error al devolver la película.");
+          }
+      } else {
+          System.out.println("Pelicula no encontrada o no está en posesión del cliente.");
+      }
+  }
+  
+
+
+
+
+
+
    
    /* FUNCION HECHA PARA OPTIMIZACION
    private static void crearCliente(BufferedReader lector, Gestor videoClub) throws IOException {
