@@ -78,6 +78,8 @@ public class Gestor{
                     // Crear un objeto Cliente y agregarlo a la lista y al mapa
                     Cliente cliente = new Cliente(nombreUsuario, saldo);
                     agregarCliente(cliente);
+                    listaClientes.add(cliente);
+                    mapaClientes.put(nombreUsuario, cliente);
                 }
             }
         } 
