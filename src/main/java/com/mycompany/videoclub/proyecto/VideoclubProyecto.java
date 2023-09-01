@@ -33,11 +33,10 @@ public class VideoclubProyecto {
 
       videoclub.importarPeliculas(csvPeliculas);
       
-      System.out.println("Ingrese su nombre de cliente:");
-      String nombre = lector.readLine();
+      
+      String nombre = "Mauricio";
 
-      System.out.println("Ingrese su saldo inicial: ");
-      Double saldo = Double.parseDouble(lector.readLine());
+      Double saldo = 500.0;
       Cliente client = new Cliente(nombre, saldo);
       videoclub.agregarCliente(client);
       // Menu del usuario
