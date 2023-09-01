@@ -102,6 +102,11 @@ public class Gestor{
          }
     }
 
+    public boolean agregarCliente(String nombreUsuario, double saldo) {
+        Cliente cliente = new Cliente(nombreUsuario, saldo);
+        return agregarCliente(cliente);
+    }
+
     
 
  

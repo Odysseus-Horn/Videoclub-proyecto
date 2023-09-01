@@ -54,12 +54,24 @@ public class Cliente {
         saldo = monto;
     }
 
+    // Método para agregar saldo a la cuenta del cliente
+    public void agregarSaldo(double monto) {
+        saldo += monto;
+    }
+
+     // Sobrecarga del método para agregar saldo a la cuenta del cliente usando un valor entero
+     public void agregarSaldo(int monto) {
+        saldo += monto;
+    }
+
+
     public boolean arrendarPelicula(Pelicula peli){
         if(peli.getExistencias() == 0 || saldo - peli.getPrecioArriendo() < 0)
         {
             return false;
         }
         
+        saldo -= peli.getPrecioArriendo();
         peliculasEnPosesion.add(peli);
         historialPeliculas.add(peli);
         return true;
