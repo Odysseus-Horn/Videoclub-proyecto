@@ -88,6 +88,13 @@ public class VideoclubProyecto {
 
       Pelicula pelicula = videoCLub.buscarPeliculaPorNombre(nombre);
       
+      
+      if(pelicula == null){
+          System.out.println("Pelicula no encontrada o no está en posesión del cliente.");
+          return;
+          
+      }
+      
       boolean arrendado = client.arrendarPelicula(pelicula);
       if(arrendado)
       {
