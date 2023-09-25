@@ -57,19 +57,17 @@ public class VideoclubProyecto {
                videoclub.mostrarPeliculas();
                break;
             case 2:
-               videoclub.mostrarPeliculas();
-               System.out.println("Qué pelicula desea arrendar?");
-               String nombreABuscar = lector.readLine();
-               
-               arrendar(videoclub, nombreABuscar,client);
+               if(videoclub.mostrarPeliculas()){
+                  System.out.println("Qué pelicula desea arrendar?");
+                  String nombreABuscar = lector.readLine();
+                  client.arrendarPelicula(videoclub, formatearNombre(nombreABuscar));
+               }
                break;
             case 3:
-               client.mostrarPeliculasEnPosesion();
-               if(!client.getPeliculasenPosesion().isEmpty())
-               {
+               if(client.mostrarPeliculasEnPosesion()){
                   System.out.println("qué pelicula del listado desea eliminar?");
                   String nombreAEliminar = lector.readLine();
-                  devolver(videoclub, nombreAEliminar,client);
+                  client.devolverPelicula(videoclub, formatearNombre(nombreAEliminar));
                }
                break;
             case 4:
@@ -84,50 +82,13 @@ public class VideoclubProyecto {
    }
 
 
-   private static void arrendar(Gestor videoCLub,String nombre,Cliente client) throws IOException {
-
-      Pelicula pelicula = videoCLub.buscarPeliculaPorNombre(nombre);
-      
-      
-      if(pelicula == null){
-          System.out.println("Pelicula no encontrada o no está en posesión del cliente.");
-          return;
-          
-      }
-      
-      boolean arrendado = client.arrendarPelicula(pelicula);
-      if(arrendado)
-      {
-         pelicula.reducirExistencias(1);
-         System.out.println("Película agregada con éxito");
-      }
-      else
-      {
-         System.out.println("la película no tiene existencias o usted no tiene saldo suficiente");
-      }
-   }
+ 
    
 
-   private static void devolver(Gestor videoClub, String nombrePelicula, Cliente client) {
-
-      Pelicula pelicula = videoClub.buscarPeliculaPorNombre(nombrePelicula);
-  
-      if (pelicula != null && client.getPeliculasenPosesion().contains(pelicula)) {
-          boolean devuelto = client.devolverPelicula(pelicula, videoClub);
-  
-          if (devuelto) {
-               pelicula.aumentarExistencias(1);
-              System.out.println("Pelicula devuelta con éxito.");
-          } else {
-              System.out.println("Error al devolver la película.");
-          }
-      } else {
-          System.out.println("Pelicula no encontrada o no está en posesión del cliente.");
-      }
-  }
-  
-
-
+   private static String formatearNombre(String nombre) {
+      // Convierte la primera letra a mayúscula y el resto a minúscula
+      return nombre.substring(0, 1).toUpperCase() + nombre.substring(1).toLowerCase();
+   }
 
 
 
