@@ -35,19 +35,4 @@ public class ClientePrime extends Cliente{
         }
     }
 
-
-    //sobreescritura de método arrendarPelícula
-    @Override
-    public boolean arrendarPelicula(Pelicula peli){
-        if(peli.getExistencias() == 0 || saldo - peli.getPrecioArriendo() < 0)
-        {
-            return false;
-        }
-        
-        saldo -= peli.getPrecioArriendo();
-        peliculasEnPosesion.add(peli);
-        historialPeliculas.add(peli);
-        return true;
-    }
-
 }

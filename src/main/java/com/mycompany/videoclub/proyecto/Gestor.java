@@ -134,17 +134,17 @@ public class Gestor{
                 System.out.println("Nombre de usuario: " + cliente.getNombreUsuario());
                 System.out.println("Saldo: " + cliente.getSaldo());
                 System.out.println("Películas en posesión: " + cliente.getSizePeliculasEnPosesion());
-                System.out.println("Total películas arrendadas" + cliente.getSizeHistorialPelicula());
                 System.out.println("----------------------");
             }
         }
     }
 
-    public void mostrarPeliculas() {
+    public boolean mostrarPeliculas() {
         System.out.println("Catálogo de películas del videoclub:");
         
         if (listaPeliculas.isEmpty()) {
             System.out.println("No hay películas por el momento.");
+            return false;
         } else 
         {
             for (Pelicula peli : listaPeliculas) {
@@ -158,17 +158,15 @@ public class Gestor{
                 System.out.println("genero: " + peli.getGenero());
                 System.out.println("----------------------");
             }
+            return true;
         }
-
-
     }
    
     public Pelicula buscarPeliculaPorNombre(String nombre) {
         
 
         String nombreFormateado = nombre.substring(0, 1).toUpperCase() + nombre.substring(1).toLowerCase();
-        System.out.println(nombreFormateado);
-
+        
         Pelicula peli = mapaPeliculas.get(nombreFormateado);
         if(peli != null){
             if (peli.getTitulo().equalsIgnoreCase(nombreFormateado)) {
