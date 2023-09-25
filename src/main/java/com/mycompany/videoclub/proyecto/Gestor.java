@@ -15,18 +15,8 @@ public class Gestor{
 
     public Gestor()
     {
-        listaClientes = new ArrayList<  >();
+        listaClientes = new ArrayList<>();
         listaPeliculas = new ArrayList<>();
-    }
-
-    //getters
-    public ArrayList<Cliente> getListaClientes(){   
-        return listaClientes;
-    }
-
-    public ArrayList<Pelicula> getListaPeliculas()
-    {
-        return listaPeliculas;
     }
 
     //Métodos 
@@ -50,8 +40,9 @@ public class Gestor{
                     int precioArriendo = Integer.parseInt(parts[3].trim());
                     float rating = Float.parseFloat(parts[4].trim());
                     String sinopsis = parts[5];
+                    String genero = parts[6];
     
-                    Pelicula peli = new Pelicula(titulo, year, existencias, precioArriendo, rating, sinopsis);
+                    Pelicula peli = new Pelicula(titulo, year, existencias, precioArriendo, rating, sinopsis, genero);
                     listaPeliculas.add(peli); // Agregar a la lista
     
                     mapaPeliculas.put(titulo, peli); // Agregar al mapa
@@ -164,6 +155,7 @@ public class Gestor{
                 System.out.println("Valor Arriendo:" + peli.getPrecioArriendo());
                 System.out.println("Rating: " + peli.getRating());
                 System.out.println("Sinopsis: " + peli.getSinopsis());
+                System.out.println("genero: " + peli.getGenero());
                 System.out.println("----------------------");
             }
         }
@@ -172,13 +164,15 @@ public class Gestor{
     }
    
     public Pelicula buscarPeliculaPorNombre(String nombre) {
+        
 
-        Pelicula peli = mapaPeliculas.get(nombre);
-        if(peli != null)
+        String nombreFormateado = nombre.substring(0, 1).toUpperCase() + nombre.substring(1).toLowerCase();
+        System.out.println(nombreFormateado);
 
-        for (Pelicula pelicula : listaPeliculas) {
-            if (pelicula.getTitulo().equalsIgnoreCase(nombre)) {
-                return pelicula;
+        Pelicula peli = mapaPeliculas.get(nombreFormateado);
+        if(peli != null){
+            if (peli.getTitulo().equalsIgnoreCase(nombreFormateado)) {
+                return peli;
             }
         }
         return null;

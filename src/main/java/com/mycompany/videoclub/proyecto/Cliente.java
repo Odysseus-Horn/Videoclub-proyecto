@@ -2,10 +2,10 @@ package com.mycompany.videoclub.proyecto;
 import java.util.ArrayList;
 
 public class Cliente {
-    private String nombreUsuario;
-    private double saldo;
-    private ArrayList<Pelicula> historialPeliculas;
-    private ArrayList<Pelicula> peliculasEnPosesion;
+    protected String nombreUsuario;
+    protected double saldo;
+    protected ArrayList<Pelicula> historialPeliculas;
+    protected ArrayList<Pelicula> peliculasEnPosesion;
 
     public Cliente(String nombreUsuario, double saldo) {
         this.nombreUsuario = nombreUsuario;
@@ -94,8 +94,6 @@ public class Cliente {
                 System.out.println("----------------------");
             }
         }
-
-
     }
     public boolean devolverPelicula(Pelicula peli, Gestor club)
     {
@@ -111,5 +109,9 @@ public class Cliente {
         }
     }
 
-    
-}       
+    public void mostrarSaldo()
+    {
+        System.out.println("Tu saldo: $" + saldo);
+    }
+}      
+
