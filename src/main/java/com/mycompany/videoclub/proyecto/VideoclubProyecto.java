@@ -5,6 +5,7 @@
 package com.mycompany.videoclub.proyecto;
 
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.io.*;
 
 /**
@@ -49,6 +50,7 @@ public class VideoclubProyecto {
          System.out.println("2. Arrendar Película");
          System.out.println("3. Devolver Película");
          System.out.println("4. Salir");
+         System.out.println("5. Buscar Pelicula por Rating");
          
          opcion = Integer.parseInt(lector.readLine());
 
@@ -75,6 +77,30 @@ public class VideoclubProyecto {
                lector.close();
                System.exit(0);
                break;
+
+            case 5: 
+               System.out.println("Ingrese el rating de la pelicula que desea buscar");
+               float rating = Float.parseFloat(lector.readLine());
+               
+               ArrayList<Pelicula> peliculas = videoclub.buscarPeliculasPorRating(rating);
+
+               if(peliculas.isEmpty()){
+                  System.out.println("No se encontraron peliculas con ese rating");
+               } 
+               else{
+                  for (Pelicula peli : peliculas) {
+                     System.out.println("----------------------");
+                     System.out.println("Título: " + peli.getTitulo());
+                     System.out.println("Año: " + peli.getYear());
+                     System.out.println("Existencias: " + peli.getExistencias());
+                     System.out.println("Valor Arriendo:" + peli.getPrecioArriendo());
+                     System.out.println("Rating: " + peli.getRating());
+                     System.out.println("Sinopsis: " + peli.getSinopsis());
+                     System.out.println("genero: " + peli.getGenero());
+                     System.out.println("----------------------");
+                  }
+               break;
+               }
             default:
                System.out.println("Opción inválida. Inténtalo de nuevo.");
          }

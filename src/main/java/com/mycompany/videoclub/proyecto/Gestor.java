@@ -175,6 +175,30 @@ public class Gestor{
         }
         return null;
     }
+
+      //Se Realiza una busqueda de peliculas que tenga rating mayor o igual al ingresado por el usuario y se devuelve una lista con las peliculas que cumplen con el criterio
+      public ArrayList<Pelicula> buscarPeliculasPorRating(float rating){
+
+        ArrayList<Pelicula> listaFiltrada = new ArrayList<>();
+
+        for (Pelicula peli : listaPeliculas) {
+            if(peli.getRating()>= rating){
+                listaFiltrada.add(peli);
+            }
+        }
+        if(listaFiltrada.isEmpty()){
+            return null;
+        }
+        else{
+            return listaFiltrada;
+        }
+    }
+
+
+
+
+
+
     
 
 
