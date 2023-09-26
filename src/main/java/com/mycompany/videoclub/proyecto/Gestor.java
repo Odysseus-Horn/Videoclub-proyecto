@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class Gestor{
@@ -21,12 +23,15 @@ public class Gestor{
 
     //Métodos 
 
+    // Agrega Pelicula al catalogo de peliculas
     public void agregarPelicula(Pelicula pelicula)
     {
         listaPeliculas.add(pelicula);
+        //mapaPeliculas.put(pelicula.getTitulo(),pelicula);
+        
     }
 
-
+    // Importar de Peliculas y Clientes
     public void importarPeliculas(String archivo) {
         try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
             String line;
@@ -65,10 +70,23 @@ public class Gestor{
                     // Asignación de los datos del cliente
                     String nombreUsuario = parts[0];
                     double saldo = Double.parseDouble(parts[1].trim());
+                    String claveUsuario = parts[2];
+                    ArrayList<Pelicula> peliculasPosecion = new ArrayList<>();
+                    if(parts.length >= 3){
+                        
+                        for (int i = 3; i < parts.length; i++) {
+                        String nombrePelicula = parts[i];
+                        // Buscar la película por nombre y agregarla a la lista de películas en posesión
+                        Pelicula pelicula = mapaPeliculas.get(nombrePelicula);
+                        if (pelicula != null) {
+                            peliculasPosecion.add(pelicula);
+                        }
+                    }
 
+                    }
                     // Crear un objeto Cliente y agregarlo a la lista y al mapa
-                    Cliente cliente = new Cliente(nombreUsuario, saldo);
-                    agregarCliente(cliente);
+                    Cliente cliente = new Cliente(nombreUsuario, saldo,claveUsuario);
+                    cliente.agregarPeliculasImportadas(peliculasPosecion);
                     listaClientes.add(cliente);
                     mapaClientes.put(nombreUsuario, cliente);
                 }
@@ -79,7 +97,30 @@ public class Gestor{
         }    
     }
 
-    
+    // Exportar CLientes
+
+    public void exportarClientes(String archivo){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo))){
+            for(Cliente client : listaClientes){
+                writer.write(client.getNombreUsuario() + "," + client.getSaldo() + "," + client.getClave());
+                if(!client.peliculasEnPosesion.isEmpty()){
+                    for(Pelicula peli : client.peliculasEnPosesion){
+                        writer.write("," + peli.getTitulo());
+                    }
+                    
+                }
+                writer.newLine();
+            }
+
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+ 
+
+
+    //Funciones Propias del Gestor.
     public boolean agregarCliente(Cliente cliente)
     {
          if(mapaClientes.containsKey(cliente.getNombreUsuario()))
@@ -95,12 +136,11 @@ public class Gestor{
          }
     }
 
-    public boolean agregarCliente(String nombreUsuario, double saldo) {
-        Cliente cliente = new Cliente(nombreUsuario, saldo);
+    public boolean agregarCliente(String nombreUsuario, double saldo,String clave) {
+        Cliente cliente = new Cliente(nombreUsuario, saldo,clave);
         return agregarCliente(cliente);
     }
 
-    
 
  
     public boolean eliminarCliente(String key) {
