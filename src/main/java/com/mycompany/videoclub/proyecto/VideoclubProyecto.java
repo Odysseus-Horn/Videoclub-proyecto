@@ -25,7 +25,7 @@ public class VideoclubProyecto {
       int opcion; // inicializamos la variable opcion para las distintas funciones disponibles para el usuario
 
       String csvPeliculas = currentFolder + "/src/main/java/com/mycompany/videoclub/proyecto/datos/Peliculas.csv";
-      String csvClientes = currentFolder + "/src/main/java/com/mycompany/videoclub/proyecto/datos/Peliculas.csv";
+      String csvClientes = currentFolder + "/src/main/java/com/mycompany/videoclub/proyecto/datos/Clientes.csv";
 
 
       Gestor videoclub = new Gestor();
@@ -33,12 +33,14 @@ public class VideoclubProyecto {
 
 
       videoclub.importarPeliculas(csvPeliculas);
+      //videoclub.importarClientes(csvClientes);
       
       
       String nombre = "Mauricio";
 
       Double saldo = 500.0;
-      Cliente client = new Cliente(nombre, saldo);
+      
+      Cliente client = new Cliente(nombre, saldo,"22444");
       videoclub.agregarCliente(client);
       // Menu del usuario
       while(true) {
@@ -51,6 +53,8 @@ public class VideoclubProyecto {
          System.out.println("3. Devolver Película");
          System.out.println("4. Salir");
          System.out.println("5. Buscar Pelicula por Rating");
+         System.out.println("6. Mostrar Peliculas Arrendadas");
+         
          
          opcion = Integer.parseInt(lector.readLine());
 
@@ -71,9 +75,13 @@ public class VideoclubProyecto {
                   String nombreAEliminar = lector.readLine();
                   client.devolverPelicula(videoclub, formatearNombre(nombreAEliminar));
                }
+               else{
+                  System.out.println("No tienes peliculas en posesion");
+               }
                break;
             case 4:
                System.out.println("Saliendo del programa.");
+               videoclub.exportarClientes("clientes_exportados.csv");
                lector.close();
                System.exit(0);
                break;
@@ -99,8 +107,12 @@ public class VideoclubProyecto {
                      System.out.println("genero: " + peli.getGenero());
                      System.out.println("----------------------");
                   }
-               break;
                }
+               break;
+
+            case 6:
+               client.mostrarPeliculasEnPosesion();
+               break;
             default:
                System.out.println("Opción inválida. Inténtalo de nuevo.");
          }

@@ -4,12 +4,14 @@ import java.util.ArrayList;
 
 public class Cliente {
     protected String nombreUsuario;
+    protected String clave;
     protected double saldo;
     protected ArrayList<Pelicula> peliculasEnPosesion;
 
-    public Cliente(String nombreUsuario, double saldo) {
+    public Cliente(String nombreUsuario, double saldo,String clave){
         this.nombreUsuario = nombreUsuario;
         this.saldo = saldo;
+        this.clave = clave;
         peliculasEnPosesion = new ArrayList<>();
     }
 
@@ -28,6 +30,9 @@ public class Cliente {
     {
         return peliculasEnPosesion.size();
     }
+    public String getClave(){
+        return clave;
+    }
 
     //setter
     public void setNombreUsuario(String nombre){
@@ -38,6 +43,9 @@ public class Cliente {
     {
         saldo = monto;
     }
+    public void setClave(String clave){
+        this.clave = clave;
+    }
 
     // Método para agregar saldo a la cuenta del cliente
     public void agregarSaldo(double monto) {
@@ -45,9 +53,11 @@ public class Cliente {
     }
 
      // Sobrecarga del método para agregar saldo a la cuenta del cliente usando un valor entero
-     public void agregarSaldo(int monto) {
+    public void agregarSaldo(int monto) {
         saldo += monto;
     }
+
+
 
     public boolean arrendarPelicula(Gestor club, String nombre){
 
@@ -120,6 +130,20 @@ public class Cliente {
     public void mostrarSaldo()
     {
         System.out.println("Tu saldo: $" + saldo);
+    }
+    
+    public void agregarPeliculasImportadas(ArrayList<Pelicula> lista){
+
+        //verificamos que la lista de peliculas del cliente tenga peliculas arrendadas
+        if(lista.isEmpty()){
+            return;
+        }
+
+        //recorremos la lista de peliculas del cliente
+        for(int i = 0; i < lista.size(); i++){
+            Pelicula peli = lista.get(i);
+            peliculasEnPosesion.add(peli);
+        }
     }
 }      
 
