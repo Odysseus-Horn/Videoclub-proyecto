@@ -66,15 +66,17 @@ public class Gestor{
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
-                if (parts.length >= 2) {
+                if (parts.length >= 3) {
                     // Asignación de los datos del cliente
                     String nombreUsuario = parts[0];
                     double saldo = Double.parseDouble(parts[1].trim());
                     String claveUsuario = parts[2];
+                    int nivelMembresia = Integer.parseInt(parts[3].trim());
+
                     ArrayList<Pelicula> peliculasPosecion = new ArrayList<>();
-                    if(parts.length >= 3){
+                    if(parts.length >= 5){
                         
-                        for (int i = 3; i < parts.length; i++) {
+                        for (int i = 4; i < parts.length; i++) {
                         String nombrePelicula = parts[i];
                         // Buscar la película por nombre y agregarla a la lista de películas en posesión
                         Pelicula pelicula = mapaPeliculas.get(nombrePelicula);
@@ -84,11 +86,21 @@ public class Gestor{
                     }
 
                     }
-                    // Crear un objeto Cliente y agregarlo a la lista y al mapa
-                    Cliente cliente = new Cliente(nombreUsuario, saldo,claveUsuario);
-                    cliente.agregarPeliculasImportadas(peliculasPosecion);
-                    listaClientes.add(cliente);
-                    mapaClientes.put(nombreUsuario, cliente);
+                    if(nivelMembresia == 0)
+                    {
+                        // Crear un objeto Cliente y agregarlo a la lista y al mapa
+                        Cliente cliente = new Cliente(nombreUsuario, saldo,claveUsuario);
+                        cliente.agregarPeliculasImportadas(peliculasPosecion);
+                        listaClientes.add(cliente);
+                        mapaClientes.put(nombreUsuario, cliente);
+                    }
+                    else{
+                        //crear un Cliente prime y agregarlo a la lista y al mapa
+                        ClientePrime primeCliente = new ClientePrime(nombreUsuario, claveUsuario, saldo, nivelMembresia);
+                        primeCliente.agregarPeliculasImportadas(peliculasPosecion); 
+                        listaClientes.add(primeCliente);
+                        mapaClientes.put(nombreUsuario, primeCliente);
+                    }
                 }
             }
         } 

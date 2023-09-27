@@ -57,10 +57,6 @@ public class Cliente {
         saldo += monto;
     }
 
-
-
-
-
     public boolean arrendarPelicula(Gestor club, String nombre){
 
         Pelicula peli = club.buscarPeliculaPorNombre(nombre);

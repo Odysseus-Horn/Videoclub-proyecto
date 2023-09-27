@@ -30,7 +30,6 @@ public class VideoclubProyecto {
 
 
       Gestor videoclub = new Gestor();
-      
 
       //se importan clientes y peliculas del texto
       videoclub.importarPeliculas(csvPeliculas);
@@ -46,6 +45,7 @@ public class VideoclubProyecto {
       String contra;
       Cliente client = new Cliente("default", 0, "claveDefault");
       int money;
+      int level;
       boolean ends = true;
 
       while(ends)
@@ -86,8 +86,18 @@ public class VideoclubProyecto {
                
                System.out.println("Ingrese su saldo inicial");
                money = Integer.parseInt(lector.readLine());
+               
+               System.out.println(("tiene membresia tier 1,2,3? si no tiene ninguna ingrese 0"));
+               level = Integer.parseInt(lector.readLine());
 
-               client = new Cliente(cliente, money, contra);
+               if(level == 0)
+               {
+                  client = new Cliente(cliente, money, contra);
+               }
+               else
+               {
+                  client = new ClientePrime(cliente, contra, money, level);
+               }
 
                videoclub.agregarCliente(client);
                ends = false;
@@ -98,8 +108,12 @@ public class VideoclubProyecto {
          }
       }
 
-
       System.out.println("Bienvenido " + client.getNombreUsuario());
+      if(client instanceof ClientePrime)
+      {
+         ClientePrime prime = (ClientePrime) client;
+         System.out.println("membresia tier " + prime.getNivelMembresia());
+      }
       // Menu del usuario
       while(true) {
 
@@ -184,9 +198,6 @@ public class VideoclubProyecto {
       // Convierte la primera letra a mayúscula y el resto a minúscula
       return nombre.substring(0, 1).toUpperCase() + nombre.substring(1).toLowerCase();
    }
-
-
-
 
    
    /* FUNCION HECHA PARA OPTIMIZACION
