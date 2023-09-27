@@ -24,6 +24,7 @@ public class VideoclubProyecto {
 
       int opcion; // inicializamos la variable opcion para las distintas funciones disponibles para el usuario
 
+      //directorios para las peliculas
       String csvPeliculas = currentFolder + "/src/main/java/com/mycompany/videoclub/proyecto/datos/Peliculas.csv";
       String csvClientes = currentFolder + "/src/main/java/com/mycompany/videoclub/proyecto/datos/Clientes.csv";
 
@@ -31,17 +32,74 @@ public class VideoclubProyecto {
       Gestor videoclub = new Gestor();
       
 
-
+      //se importan clientes y peliculas del texto
       videoclub.importarPeliculas(csvPeliculas);
-      //videoclub.importarClientes(csvClientes);
+      videoclub.importarClientes(csvClientes);
       
-      
-      String nombre = "Mauricio";
+      //opcion de registro o inicio de sesión
+      int option;
+      System.out.println("1) Iniciar Sesión");
+      System.out.println("2) Registrarse");
+      option = Integer.parseInt(lector.readLine());
 
-      Double saldo = 500.0;
-      
-      Cliente client = new Cliente(nombre, saldo,"22444");
-      videoclub.agregarCliente(client);
+      String cliente;
+      String contra;
+      Cliente client = new Cliente("default", 0, "claveDefault");
+      int money;
+      boolean ends = true;
+
+      while(ends)
+      {
+         switch(option)
+         {
+            case 1:
+               System.out.println("ingrese nombre usuario");
+               cliente = lector.readLine();
+               System.out.println("ingrese su contraseña:");
+               contra = lector.readLine();
+
+               client = videoclub.iniciarSesion(cliente, contra);
+               while(client == null)
+               {
+                  System.out.println("nombre o contraseña incorrecta, intente de nuevo");
+                  System.out.println("ingrese nombre usuario");
+                  cliente = lector.readLine();
+                  System.out.println("ingrese su contraseña:");
+                  contra = lector.readLine();
+
+                  client = videoclub.iniciarSesion(cliente, contra);
+               }
+               ends = false;
+               break;
+            case 2:
+               do{
+                  System.out.println("ingrese nombre usuario");
+                  cliente = lector.readLine();
+
+                  if(videoclub.existeCliente(cliente)){
+                  System.out.println("el cliente ya existe inténtelo de nuevo");
+                  }
+               } while(videoclub.existeCliente(cliente));
+
+               System.out.println("ingrese su contraseña:");
+               contra = lector.readLine();
+               
+               System.out.println("Ingrese su saldo inicial");
+               money = Integer.parseInt(lector.readLine());
+
+               client = new Cliente(cliente, money, contra);
+
+               videoclub.agregarCliente(client);
+               ends = false;
+               break;
+            default:
+               System.out.println("opción no válida");
+               break;
+         }
+      }
+
+
+      System.out.println("Bienvenido " + client.getNombreUsuario());
       // Menu del usuario
       while(true) {
 
@@ -57,7 +115,6 @@ public class VideoclubProyecto {
          
          
          opcion = Integer.parseInt(lector.readLine());
-
          switch(opcion) {
             case 1:
                videoclub.mostrarPeliculas();

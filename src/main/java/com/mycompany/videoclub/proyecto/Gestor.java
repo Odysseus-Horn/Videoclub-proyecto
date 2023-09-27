@@ -141,6 +141,7 @@ public class Gestor{
         return agregarCliente(cliente);
     }
 
+    
 
  
     public boolean eliminarCliente(String key) {
@@ -234,8 +235,30 @@ public class Gestor{
         }
     }
 
+    public Cliente iniciarSesion(String nombre, String password)
+    {
+        if(mapaClientes.containsKey(nombre))
+        {
+            Cliente client = mapaClientes.get(nombre);
+
+            if(client.getClave().equals(password)){
+                return client;
+            }
+        }
+        return null;
+    }
 
 
+    public boolean existeCliente(String nombre)
+    {
+        if(mapaClientes.containsKey(nombre))
+        {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 
 
 

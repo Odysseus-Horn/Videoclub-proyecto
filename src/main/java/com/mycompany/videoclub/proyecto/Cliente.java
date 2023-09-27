@@ -59,6 +59,8 @@ public class Cliente {
 
 
 
+
+
     public boolean arrendarPelicula(Gestor club, String nombre){
 
         Pelicula peli = club.buscarPeliculaPorNombre(nombre);

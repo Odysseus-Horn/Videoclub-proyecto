@@ -3,8 +3,8 @@ package com.mycompany.videoclub.proyecto;
 public class ClientePrime extends Cliente{
     private int nivelMembresia;
 
-    public ClientePrime(String nombreUsuario, double saldo, int nivel){
-        super(nombreUsuario, saldo);
+    public ClientePrime(String nombreUsuario,String contrasena, double saldo, int nivel){
+        super(nombreUsuario, saldo, contrasena);
         nivelMembresia = nivel;
     }
 
