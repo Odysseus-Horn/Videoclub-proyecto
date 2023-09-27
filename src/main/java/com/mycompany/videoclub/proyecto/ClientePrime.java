@@ -35,4 +35,24 @@ public class ClientePrime extends Cliente{
         }
     }
 
+    //sobreescritura de devolverPelicula
+    @Override
+    public boolean devolverPelicula(Gestor club, String nombrePeli)
+    {
+        Pelicula peli = club.buscarPeliculaPorNombre(nombrePeli);
+
+        if(peliculasEnPosesion.contains(peli))
+        {
+            peliculasEnPosesion.remove(peli);
+            peli.aumentarExistencias(1);
+            //se hace un cashback de 100 créditos
+            saldo += 100;
+            return true;
+        }
+        else
+        {
+            System.out.println("No ha arrendado esa película, inténtelo de nuevo");
+            return false;
+        }
+    }
 }
