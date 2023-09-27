@@ -57,35 +57,41 @@ public class Cliente {
         saldo += monto;
     }
 
-    public boolean arrendarPelicula(Gestor club, String nombre){
-
+    public boolean arrendarPelicula(Gestor club, String nombre) {
         Pelicula peli = club.buscarPeliculaPorNombre(nombre);
-
-        if(peli == null)
-        {   
-            System.out.println("La película no existe en el catálogo");
+    
+        try {
+            if (peli == null) {
+                throw new PeliculaNoExisteException("La película no existe en el catálogo");
+            }
+    
+            if (peli.getExistencias() == 0) {
+                throw new SinExistenciasExcepcion("Lo sentimos, no quedan existencias de la película");
+            }
+    
+            if (saldo - peli.getPrecioArriendo() < 0) {
+                throw new SaldoInsuficienteException("Lo sentimos, tu saldo es insuficiente");
+            }
+    
+            saldo -= peli.getPrecioArriendo();
+            peli.reducirExistencias(1);
+            System.out.println(peli.getExistencias());
+            peliculasEnPosesion.add(peli);
+    
+            System.out.println("Película arrendada exitosamente.");
+            return true;
+        } catch (PeliculaNoExisteException e) {
+            System.out.println(e.getMessage());
+            return false;
+        } catch (SinExistenciasExcepcion e) {
+            System.out.println(e.getMessage());
+            return false;
+        } catch (SaldoInsuficienteException e) {
+            System.out.println(e.getMessage());
             return false;
         }
-
-        if(peli.getExistencias() == 0)
-        {
-            System.out.println("Lo sentimos, no quedan existencias de la película");
-            return false;
-        }
-        if(saldo - peli.getPrecioArriendo() < 0)
-        {
-            System.out.println("lo sentimos, tu saldo es insuficiente");
-            return false;
-        }
-        
-        saldo -= peli.getPrecioArriendo();
-        peli.reducirExistencias(1);
-        System.out.println(peli.getExistencias());
-        peliculasEnPosesion.add(peli);
-
-        System.out.println("Película arrendada exitosamente.");
-        return true;
     }
+    
 
     public boolean mostrarPeliculasEnPosesion() {
         System.out.println("Películas que has arrendado");
@@ -143,5 +149,19 @@ public class Cliente {
             peliculasEnPosesion.add(peli);
         }
     }
+
+    public ArrayList<String> peliculasArrendadas()
+    {   
+        ArrayList<String> nombresPeliculas = new ArrayList<String>();
+
+        for(int i = 0 ; i < peliculasEnPosesion.size() ; i++)
+        {
+            nombresPeliculas.add(peliculasEnPosesion.get(i).getTitulo());
+        }
+
+
+        return nombresPeliculas;
+    }
+
 }      
 

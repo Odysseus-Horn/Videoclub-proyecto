@@ -1,3 +1,4 @@
-usuario1,1500,Clave1234,0,Avatar,Matrix
-usuario2,2000,Pass5678,1,Jurassic Park,Shrek
-usuario3,1000,Secret9876,0,Titanic
+usuario1,1500.0,Clave1234,0
+usuario2,2000.0,Pass5678,1,Shrek
+usuario3,1000.0,Secret9876,0,Titanic
+uly,749.0,Chocolate3,2,Avatar,Matrix

@@ -31,7 +31,7 @@ public class Gestor{
         
     }
 
-    // Importar de Peliculas y Clientes
+    // Importar de Peliculas
     public void importarPeliculas(String archivo) {
         try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
             String line;
@@ -58,8 +58,27 @@ public class Gestor{
         }
     }
     
+    //exportar peliculas del csv
+    public void exportarPeliculas(String archivo) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo))) {
+            for (Pelicula pelicula : listaPeliculas) {
+                writer.write(pelicula.getTitulo() + ",");
+                writer.write(pelicula.getYear() + ",");
+                writer.write(pelicula.getExistencias() + ",");
+                writer.write(pelicula.getPrecioArriendo() + ",");
+                writer.write(pelicula.getRating() + ",");
+                writer.write(pelicula.getSinopsis() + ",");
+                writer.write(pelicula.getGenero());
+    
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
 
-
+    //importar clientes del csv
     public void importarClientes(String archivo)
     {
         try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
@@ -111,27 +130,56 @@ public class Gestor{
 
     // Exportar CLientes
 
-    public void exportarClientes(String archivo){
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo))){
-            for(Cliente client : listaClientes){
-                writer.write(client.getNombreUsuario() + "," + client.getSaldo() + "," + client.getClave());
-                if(!client.peliculasEnPosesion.isEmpty()){
-                    for(Pelicula peli : client.peliculasEnPosesion){
-                        writer.write("," + peli.getTitulo());
-                    }
-                    
+
+    public void exportarClientes(String archivo) {
+        
+        //escritor
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo))) {
+            //se exporta cada cliente en el bucle
+            for (Cliente cliente : listaClientes) {
+                writer.write(cliente.getNombreUsuario() + ",");
+                writer.write(cliente.getSaldo() + ",");
+                writer.write(cliente.getClave() + ",");
+
+                //si el cliente es instancia de clientePrime, se exporta con su nivel de membresia indicado
+                if(cliente instanceof ClientePrime)
+                {
+                    ClientePrime client = (ClientePrime) cliente;
+                    writer.write(client.getNivelMembresia() + "");
                 }
+                else //en caso contrario se representa con un 0 que es un cliente sin suscripción
+                {
+                    writer.write("0");
+                }
+
+                //se obtienen los nombres de las películas arrendadas por el cliente
+                ArrayList<String> pelisCliente = cliente.peliculasArrendadas();
+                
+                if(pelisCliente.size() > 0)
+                {
+                    writer.write(",");
+                }
+
+                //se escriben en la linea de texto
+                for(int i = 0 ; i < pelisCliente.size() ; i++)
+                {
+                    writer.write(pelisCliente.get(i));
+
+                    if(pelisCliente.size() -1  == i)
+                    {
+                        break;
+                    }
+                    writer.write(",");
+                }
+
+
                 writer.newLine();
             }
-
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
- 
-
-
+    
     //Funciones Propias del Gestor.
     public boolean agregarCliente(Cliente cliente)
     {

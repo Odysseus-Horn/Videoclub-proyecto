@@ -114,6 +114,8 @@ public class VideoclubProyecto {
          ClientePrime prime = (ClientePrime) client;
          System.out.println("membresia tier " + prime.getNivelMembresia());
       }
+
+      videoclub.agregarCliente(client);
       // Menu del usuario
       while(true) {
 
@@ -152,7 +154,8 @@ public class VideoclubProyecto {
                break;
             case 4:
                System.out.println("Saliendo del programa.");
-               videoclub.exportarClientes("clientes_exportados.csv");
+               videoclub.exportarClientes(csvClientes);
+               videoclub.exportarPeliculas(csvPeliculas);
                lector.close();
                System.exit(0);
                break;
