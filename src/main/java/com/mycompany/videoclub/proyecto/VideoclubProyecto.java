@@ -25,7 +25,7 @@ public class VideoclubProyecto {
       //se inicializa el lector y se guarda el path hacia el proyecto
       String currentFolder = Paths.get("").toAbsolutePath().toString();
       BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
-
+      
       int opcion; // inicializamos la variable opcion para las distintas funciones disponibles para el usuario
 
       //directorios para las peliculas

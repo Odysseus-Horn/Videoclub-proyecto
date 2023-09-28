@@ -53,6 +53,7 @@ public class Signin extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton1.setText("VOLVER");
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -64,6 +65,7 @@ public class Signin extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jButton2.setText("CONTINUAR");
+        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -73,6 +75,7 @@ public class Signin extends javax.swing.JFrame {
         jLabel2.setText("Nombre de usuario: ");
 
         jLabel3.setText("Contraseña: ");
+        jLabel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
         txtnombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,7 +119,7 @@ public class Signin extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtcontra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(5, 5, 5)
                 .addComponent(jButton1)
@@ -148,9 +151,10 @@ public class Signin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Usuario NO encontrado");
 
         }else{
-             ClienteNormal swingNormal = new ClienteNormal(videoClub);
-             swingNormal.setVisible(true);
-             this.dispose();
+            
+            ClienteNormal swingNormal = new ClienteNormal(videoClub,client );
+            swingNormal.setVisible(true);
+            this.dispose();
             
         }
         

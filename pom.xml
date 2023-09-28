@@ -12,4 +12,11 @@
         <exec.mainClass>com.mycompany.videoclub.proyecto.VideoclubProyecto</exec.mainClass>
     </properties>
     <name>Videoclub</name>
+    <dependencies>
+        <dependency>
+            <groupId>org.netbeans.external</groupId>
+            <artifactId>AbsoluteLayout</artifactId>
+            <version>RELEASE180</version>
+        </dependency>
+    </dependencies>
 </project>

@@ -30,6 +30,7 @@ public class Gestor{
         //mapaPeliculas.put(pelicula.getTitulo(),pelicula);
         
     }
+    
 
     // Importar de Peliculas
     public void importarPeliculas(String archivo) {

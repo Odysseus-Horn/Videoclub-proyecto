@@ -13,15 +13,24 @@ import javax.swing.JOptionPane;
  */
 public class ClienteNormal extends javax.swing.JFrame {
 
-    private Gestor videoClub;
-    
+    private  Gestor videoClub;
+    private  Cliente cliente;
     /**
      * Creates new form clienteNormal
+     * @param club
+     * @param client
      */
-    public ClienteNormal(Gestor club) {
+    public ClienteNormal(Gestor club, Cliente client) {
+        
         initComponents();
         this.setLocationRelativeTo(null);
         videoClub = club;
+        cliente=client;
+        etiquetaBienvenidos();
+    }
+    private void etiquetaBienvenidos(){
+        
+        jLabel1.setText("Bienvenidos "+cliente.getNombreUsuario());
     }
 
     /**
@@ -34,29 +43,54 @@ public class ClienteNormal extends javax.swing.JFrame {
     private void initComponents() {
 
         irInicio = new javax.swing.JButton();
+        botonMostrar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         irInicio.setText("EXIT");
+        irInicio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         irInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 irInicioActionPerformed(evt);
             }
         });
 
+        botonMostrar.setText("MOSTRAR CATALOGO");
+        botonMostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonMostrarActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Bienvenido");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(322, Short.MAX_VALUE)
-                .addComponent(irInicio)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(irInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(botonMostrar)))
+                .addGap(0, 222, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(271, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(48, 48, 48)
+                .addComponent(botonMostrar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 241, Short.MAX_VALUE)
                 .addComponent(irInicio)
                 .addContainerGap())
         );
@@ -76,12 +110,22 @@ public class ClienteNormal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_irInicioActionPerformed
 
+    private void botonMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMostrarActionPerformed
+        // TODO add your handling code here:
+        Catalogo cat = new Catalogo(videoClub);
+        cat.setVisible(true);
+        
+    }//GEN-LAST:event_botonMostrarActionPerformed
+    
+     
     /**
      * @param args the command line arguments
      */
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonMostrar;
     private javax.swing.JButton irInicio;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
