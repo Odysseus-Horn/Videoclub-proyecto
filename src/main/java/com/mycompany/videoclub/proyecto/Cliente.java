@@ -1,6 +1,8 @@
 package com.mycompany.videoclub.proyecto;
+
 import java.io.IOException;
 import java.util.ArrayList;
+
 
 public class Cliente {
     protected String nombreUsuario;
@@ -13,6 +15,10 @@ public class Cliente {
         this.saldo = saldo;
         this.clave = clave;
         peliculasEnPosesion = new ArrayList<>();
+    }
+
+    public Cliente() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     //getter

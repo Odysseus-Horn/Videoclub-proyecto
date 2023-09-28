@@ -5,18 +5,27 @@
 
 package ventanas;
 
+import com.mycompany.videoclub.proyecto.Cliente;
+import com.mycompany.videoclub.proyecto.Gestor;
+
+
 /**
  *
  * @author cesar
  */
-public class portada extends javax.swing.JFrame {
-
+public class Portada extends javax.swing.JFrame {
+    
+    private Gestor videoClub ;
+    
+    
     /**
      * Creates new form portada
+     * 
      */
-    public portada() {
+    public Portada(Gestor club) {
         initComponents();
         this.setLocationRelativeTo(null);
+        videoClub = club;
     }
 
     /**
@@ -83,14 +92,14 @@ public class portada extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        signin inciarSesion = new signin();
+        Signin inciarSesion = new Signin(videoClub);
         inciarSesion.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        signup inciarSesion = new signup();
-        inciarSesion.setVisible(true);
+        Signup registrar = new Signup(videoClub);
+        registrar.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 

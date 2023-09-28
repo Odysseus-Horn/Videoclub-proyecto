@@ -8,12 +8,12 @@ package ventanas;
  *
  * @author cesar
  */
-public class clienteNormal extends javax.swing.JFrame {
+public class ClienteNormal extends javax.swing.JFrame {
 
     /**
      * Creates new form clienteNormal
      */
-    public clienteNormal() {
+    public ClienteNormal() {
         initComponents();
     }
 

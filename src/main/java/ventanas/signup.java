@@ -3,19 +3,28 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ventanas;
+import com.mycompany.videoclub.proyecto.Cliente;
+import com.mycompany.videoclub.proyecto.ClientePrime;
+import com.mycompany.videoclub.proyecto.Gestor;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author cesar
  */
-public class signup extends javax.swing.JFrame {
 
+public class Signup extends javax.swing.JFrame {
+    
+    private Gestor videoClub;
     /**
      * Creates new form signup
      */
-    public signup() {
+    public Signup(Gestor club) {
         initComponents();
+        
         this.setLocationRelativeTo(null);
+        
+        videoClub = club;
     }
 
     /**
@@ -136,7 +145,7 @@ public class signup extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        portada volver = new portada();
+        Portada volver = new Portada(videoClub);
         volver.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -150,12 +159,29 @@ public class signup extends javax.swing.JFrame {
     }//GEN-LAST:event_txtplanActionPerformed
 
     private void botonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistroActionPerformed
-        String nombre = txtnombre.getText();
+        
+        Cliente client = new Cliente();
+        String cliente = txtnombre.getText();
         String contra = txtcontra.getText();
-        double saldo = Double.parseDouble(txtsaldo.getText());
-        String plan = txtplan.getText();
+        double money = Double.parseDouble(txtsaldo.getText());
+        int level = Integer.parseInt(txtplan.getText());
         
         
+        if(videoClub.existeCliente(cliente)){
+            JOptionPane.showMessageDialog(this, "Nombre de usuario ya registrado");
+        }else{
+            if(level == 0)
+            {
+               client = new Cliente(cliente, money, contra);
+            }
+            else
+            {
+               client = new ClientePrime(cliente, contra, money, level);
+            }
+
+            videoClub.agregarCliente(client);
+        }
+            
     }//GEN-LAST:event_botonRegistroActionPerformed
 
     /**

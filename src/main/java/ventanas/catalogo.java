@@ -8,12 +8,12 @@ package ventanas;
  *
  * @author cesar
  */
-public class catalogo extends javax.swing.JFrame {
+public class Catalogo extends javax.swing.JFrame {
 
     /**
      * Creates new form Catalogo
      */
-    public catalogo() {
+    public Catalogo() {
         initComponents();
         this.setLocationRelativeTo(null);
     }

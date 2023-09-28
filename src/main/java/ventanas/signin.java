@@ -3,6 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ventanas;
+
+import com.mycompany.videoclub.proyecto.Cliente;
+import com.mycompany.videoclub.proyecto.Gestor;
+import javax.swing.JOptionPane;
+
+
 /*
 import com.mycompany.videoclub.proyecto.VideoclubProyecto;
 import com.mycompany.videoclub.proyecto.Cliente;
@@ -13,14 +19,17 @@ import com.mycompany.videoclub.proyecto.Cliente;
  *
  * @author cesar
  */
-public class signin extends javax.swing.JFrame {
+public class Signin extends javax.swing.JFrame {
 
+    private Gestor videoClub;
     /**
      * Creates new form signin
      */
-    public signin() {
+    public Signin(Gestor club) {
         initComponents();
+        
         this.setLocationRelativeTo(null);
+        videoClub = club;
     }
 
     /**
@@ -119,7 +128,7 @@ public class signin extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        portada volver = new portada();
+        Portada volver = new Portada(videoClub);
         volver.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -132,15 +141,17 @@ public class signin extends javax.swing.JFrame {
         
         String cliente = txtnombre.getText();
         String contra = txtcontra.getText();
-        /*
-        client = videoclub.iniciarSesion(cliente, contra);
-               if(client == null)
-               {
-                  
-               }else{
-                   client = videoclub.iniciarSesion(cliente, contra);
-               }
-        */
+        
+        Cliente client = videoClub.iniciarSesion(cliente, contra);
+        if(client == null)
+        {
+            JOptionPane.showMessageDialog(this, "Usuario NO encontrado");
+
+        }else{
+             
+            
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

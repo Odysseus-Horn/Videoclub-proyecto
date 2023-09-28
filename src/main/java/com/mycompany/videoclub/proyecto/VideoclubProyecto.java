@@ -4,7 +4,7 @@
  */
 package com.mycompany.videoclub.proyecto;
 
-import ventanas.portada;
+import ventanas.Portada;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.io.*;
@@ -19,12 +19,9 @@ public class VideoclubProyecto {
 
    public static void main(String[] args) throws IOException {  
 
-       Cliente client = new Cliente("default", 0, "claveDefault");
        
-       portada inicio = new portada();
-       inicio.setVisible(true);
-       inicio.setLocationRelativeTo(null);
-       
+      
+      
       //se inicializa el lector y se guarda el path hacia el proyecto
       String currentFolder = Paths.get("").toAbsolutePath().toString();
       BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
@@ -37,10 +34,16 @@ public class VideoclubProyecto {
 
 
       Gestor videoclub = new Gestor();
-
+      
+      
+      
       //se importan clientes y peliculas del texto
       videoclub.importarPeliculas(csvPeliculas);
       videoclub.importarClientes(csvClientes);
+      
+      Portada inicio = new Portada(videoclub);
+      inicio.setVisible(true);
+      inicio.setLocationRelativeTo(null);
       
       //opcion de registro o inicio de sesión
       int option;
@@ -54,7 +57,10 @@ public class VideoclubProyecto {
       int money;
       int level;
       boolean ends = true;
-
+      Cliente client = new Cliente("default", 0, "claveDefault");
+      
+       
+       
       while(ends)
       {
          switch(option)
