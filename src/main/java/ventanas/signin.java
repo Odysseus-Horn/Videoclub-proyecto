@@ -132,8 +132,8 @@ public class signin extends javax.swing.JFrame {
         
         String cliente = txtnombre.getText();
         String contra = txtcontra.getText();
-        
-        /*client = videoclub.iniciarSesion(cliente, contra);
+        /*
+        client = videoclub.iniciarSesion(cliente, contra);
                if(client == null)
                {
                   

@@ -19,6 +19,8 @@ public class VideoclubProyecto {
 
    public static void main(String[] args) throws IOException {  
 
+       Cliente client = new Cliente("default", 0, "claveDefault");
+       
        portada inicio = new portada();
        inicio.setVisible(true);
        inicio.setLocationRelativeTo(null);
@@ -48,7 +50,7 @@ public class VideoclubProyecto {
 
       String cliente;
       String contra;
-      Cliente client = new Cliente("default", 0, "claveDefault");
+      //Cliente client = new Cliente("default", 0, "claveDefault");
       int money;
       int level;
       boolean ends = true;
