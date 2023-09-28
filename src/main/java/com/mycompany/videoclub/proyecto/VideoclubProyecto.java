@@ -4,6 +4,7 @@
  */
 package com.mycompany.videoclub.proyecto;
 
+import ventanas.portada;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.io.*;
@@ -18,6 +19,10 @@ public class VideoclubProyecto {
 
    public static void main(String[] args) throws IOException {  
 
+       portada inicio = new portada();
+       inicio.setVisible(true);
+       inicio.setLocationRelativeTo(null);
+       
       //se inicializa el lector y se guarda el path hacia el proyecto
       String currentFolder = Paths.get("").toAbsolutePath().toString();
       BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
