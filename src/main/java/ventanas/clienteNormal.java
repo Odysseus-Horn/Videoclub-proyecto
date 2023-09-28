@@ -3,18 +3,25 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ventanas;
-
+import com.mycompany.videoclub.proyecto.Cliente;
+import com.mycompany.videoclub.proyecto.ClientePrime;
+import com.mycompany.videoclub.proyecto.Gestor;
+import javax.swing.JOptionPane;
 /**
  *
  * @author cesar
  */
 public class ClienteNormal extends javax.swing.JFrame {
 
+    private Gestor videoClub;
+    
     /**
      * Creates new form clienteNormal
      */
-    public ClienteNormal() {
+    public ClienteNormal(Gestor club) {
         initComponents();
+        this.setLocationRelativeTo(null);
+        videoClub = club;
     }
 
     /**
@@ -26,21 +33,48 @@ public class ClienteNormal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        irInicio = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        irInicio.setText("EXIT");
+        irInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                irInicioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(322, Short.MAX_VALUE)
+                .addComponent(irInicio)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(271, Short.MAX_VALUE)
+                .addComponent(irInicio)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void irInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irInicioActionPerformed
+        // TODO add your handling code here:
+        int i = JOptionPane.showConfirmDialog(this, "Seguro que quiere salir"); 
+        if (i == 0)
+        {
+            Portada port = new Portada(videoClub);
+            port.setVisible(true);
+            this.dispose();
+        }
+        
+    }//GEN-LAST:event_irInicioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -48,5 +82,6 @@ public class ClienteNormal extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton irInicio;
     // End of variables declaration//GEN-END:variables
 }

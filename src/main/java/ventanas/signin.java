@@ -148,7 +148,9 @@ public class Signin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Usuario NO encontrado");
 
         }else{
-             
+             ClienteNormal swingNormal = new ClienteNormal(videoClub);
+             swingNormal.setVisible(true);
+             this.dispose();
             
         }
         

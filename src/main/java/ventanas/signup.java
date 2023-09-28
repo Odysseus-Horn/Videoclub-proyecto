@@ -6,6 +6,7 @@ package ventanas;
 import com.mycompany.videoclub.proyecto.Cliente;
 import com.mycompany.videoclub.proyecto.ClientePrime;
 import com.mycompany.videoclub.proyecto.Gestor;
+import java.nio.file.Paths;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,6 +16,9 @@ import javax.swing.JOptionPane;
 
 public class Signup extends javax.swing.JFrame {
     
+    String currentFolder = Paths.get("").toAbsolutePath().toString();
+    String csvClientes = currentFolder + "/src/main/java/com/mycompany/videoclub/proyecto/datos/Clientes.csv";
+
     private Gestor videoClub;
     /**
      * Creates new form signup
@@ -160,7 +164,8 @@ public class Signup extends javax.swing.JFrame {
 
     private void botonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistroActionPerformed
         
-        Cliente client = new Cliente();
+        Cliente client ;
+        
         String cliente = txtnombre.getText();
         String contra = txtcontra.getText();
         double money = Double.parseDouble(txtsaldo.getText());
@@ -168,18 +173,22 @@ public class Signup extends javax.swing.JFrame {
         
         
         if(videoClub.existeCliente(cliente)){
-            JOptionPane.showMessageDialog(this, "Nombre de usuario ya registrado");
+            JOptionPane.showMessageDialog(this, "Nombre de usuario ya registrado"); 
         }else{
             if(level == 0)
             {
-               client = new Cliente(cliente, money, contra);
+                client = new Cliente(cliente, money, contra);
             }
             else
             {
-               client = new ClientePrime(cliente, contra, money, level);
+                client = new ClientePrime(cliente, contra, money, level);
             }
 
             videoClub.agregarCliente(client);
+            videoClub.exportarClientes(csvClientes);
+            ClienteNormal menu = new ClienteNormal(videoClub);
+            menu.setVisible(true);
+            this.dispose();
         }
             
     }//GEN-LAST:event_botonRegistroActionPerformed
