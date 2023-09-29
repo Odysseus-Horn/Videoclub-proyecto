@@ -279,7 +279,7 @@ public class Gestor{
     }
 
       //Se Realiza una busqueda de peliculas que tenga rating mayor o igual al ingresado por el usuario y se devuelve una lista con las peliculas que cumplen con el criterio
-      public ArrayList<Pelicula> buscarPeliculasPorRating(float rating){
+      public ArrayList<Pelicula> buscarPeliculasPorRating(double rating){
 
         ArrayList<Pelicula> listaFiltrada = new ArrayList<>();
 
