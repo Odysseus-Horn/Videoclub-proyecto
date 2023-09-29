@@ -14,13 +14,14 @@ import javax.swing.JOptionPane;
  */
 public class ClienteNormal extends javax.swing.JFrame {
 
-    /*
+    
+    
     String currentFolder = Paths.get("").toAbsolutePath().toString();
       
       //directorios para las peliculas
       String csvPeliculas = currentFolder + "/src/main/java/com/mycompany/videoclub/proyecto/datos/Peliculas.csv";
       String csvClientes = currentFolder + "/src/main/java/com/mycompany/videoclub/proyecto/datos/Clientes.csv";
-    */
+    
     private  Gestor videoClub;
     private  Cliente cliente;
     /**
@@ -38,7 +39,7 @@ public class ClienteNormal extends javax.swing.JFrame {
     }
     private void etiquetaBienvenidos(){
         
-        jLabel1.setText("Bienvenidos "+cliente.getNombreUsuario());
+        jLabel1.setText("Bienvenido "+cliente.getNombreUsuario());
     }
 
     /**
@@ -75,8 +76,6 @@ public class ClienteNormal extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Bienvenido");
-
         jButton1.setText("PELIS EN POSESIÓN");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,9 +101,9 @@ public class ClienteNormal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(151, 151, 151)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonMostrar)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(botonMostrar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)))
                 .addContainerGap(157, Short.MAX_VALUE))
@@ -133,6 +132,8 @@ public class ClienteNormal extends javax.swing.JFrame {
         int i = JOptionPane.showConfirmDialog(this, "Seguro que quiere salir"); 
         if (i == 0)
         {
+            videoClub.exportarPeliculas(csvPeliculas);
+            videoClub.exportarClientes(csvClientes);
             Portada port = new Portada(videoClub,cliente);
             port.setVisible(true);
             this.dispose();

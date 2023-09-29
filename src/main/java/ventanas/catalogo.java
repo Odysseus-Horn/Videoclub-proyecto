@@ -32,6 +32,7 @@ public class Catalogo extends javax.swing.JFrame {
         videoClub = club;
         cliente = client;
         agregarListaPelis();
+        tusaldo();
     }
     private void agregarListaPelis(){
         ArrayList<String> pelis = videoClub.obtenerNombresPeliculas();
@@ -39,7 +40,10 @@ public class Catalogo extends javax.swing.JFrame {
         for(int i = 0; i < pelis.size(); i++){
             combo.addItem(pelis.get(i));
         }
+    }
+    private void tusaldo(){
         
+        jLabeltusaldo.setText("Su saldo es: "+cliente.getSaldo()+ " CREDITOS ");
     }
 
     /**
@@ -61,7 +65,7 @@ public class Catalogo extends javax.swing.JFrame {
         labelinfo = new javax.swing.JLabel();
         txtrating = new javax.swing.JTextField();
         botonfiltrar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        jLabeltusaldo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -147,17 +151,19 @@ public class Catalogo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(216, 216, 216)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75))
+                .addGap(45, 45, 45)
+                .addComponent(jLabeltusaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(40, 40, 40)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabeltusaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -171,7 +177,7 @@ public class Catalogo extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(botonvolver)
                 .addGap(14, 14, 14))
         );
@@ -280,7 +286,7 @@ public class Catalogo extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> combo;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabeltusaldo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelinfo;
     private javax.swing.JTextArea txtdatos;
