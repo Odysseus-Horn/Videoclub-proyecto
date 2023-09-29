@@ -6,6 +6,7 @@ package ventanas;
 import com.mycompany.videoclub.proyecto.Cliente;
 import com.mycompany.videoclub.proyecto.ClientePrime;
 import com.mycompany.videoclub.proyecto.Gestor;
+import java.nio.file.Paths;
 import javax.swing.JOptionPane;
 /**
  *
@@ -13,6 +14,13 @@ import javax.swing.JOptionPane;
  */
 public class ClienteNormal extends javax.swing.JFrame {
 
+    /*
+    String currentFolder = Paths.get("").toAbsolutePath().toString();
+      
+      //directorios para las peliculas
+      String csvPeliculas = currentFolder + "/src/main/java/com/mycompany/videoclub/proyecto/datos/Peliculas.csv";
+      String csvClientes = currentFolder + "/src/main/java/com/mycompany/videoclub/proyecto/datos/Clientes.csv";
+    */
     private  Gestor videoClub;
     private  Cliente cliente;
     /**
@@ -45,8 +53,12 @@ public class ClienteNormal extends javax.swing.JFrame {
         irInicio = new javax.swing.JButton();
         botonMostrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(553, 259));
+        setSize(new java.awt.Dimension(553, 259));
 
         irInicio.setText("EXIT");
         irInicio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -65,31 +77,50 @@ public class ClienteNormal extends javax.swing.JFrame {
 
         jLabel1.setText("Bienvenido");
 
+        jButton1.setText("PELIS EN POSESIÓN");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("AGREGAR SALDO");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(irInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(86, 86, 86)
-                .addComponent(jLabel1)
-                .addGap(0, 283, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(botonMostrar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(151, 151, 151)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botonMostrar)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(57, 57, 57)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
                 .addComponent(botonMostrar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 232, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
                 .addComponent(irInicio)
                 .addContainerGap())
         );
@@ -102,7 +133,7 @@ public class ClienteNormal extends javax.swing.JFrame {
         int i = JOptionPane.showConfirmDialog(this, "Seguro que quiere salir"); 
         if (i == 0)
         {
-            Portada port = new Portada(videoClub);
+            Portada port = new Portada(videoClub,cliente);
             port.setVisible(true);
             this.dispose();
         }
@@ -116,6 +147,22 @@ public class ClienteNormal extends javax.swing.JFrame {
         this.dispose();
         
     }//GEN-LAST:event_botonMostrarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        PelisPosesion mispelis = new PelisPosesion(videoClub,cliente);
+        mispelis.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       
+        Saldonuevo saldo = new Saldonuevo(videoClub, cliente);
+        saldo.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
     
      
     /**
@@ -126,6 +173,8 @@ public class ClienteNormal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonMostrar;
     private javax.swing.JButton irInicio;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

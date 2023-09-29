@@ -9,6 +9,7 @@ import com.mycompany.videoclub.proyecto.Pelicula;
 import com.mycompany.videoclub.proyecto.Cliente;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 /**
  *
@@ -51,11 +52,12 @@ public class Catalogo extends javax.swing.JFrame {
     private void initComponents() {
 
         combo = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        botonverinfo = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtdatos = new javax.swing.JTextArea();
-        jButton2 = new javax.swing.JButton();
+        botonvolver = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,11 +69,11 @@ public class Catalogo extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("INFO");
-        jButton1.setBorder(new javax.swing.border.MatteBorder(null));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        botonverinfo.setText("INFO");
+        botonverinfo.setBorder(new javax.swing.border.MatteBorder(null));
+        botonverinfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                botonverinfoActionPerformed(evt);
             }
         });
 
@@ -84,11 +86,19 @@ public class Catalogo extends javax.swing.JFrame {
         txtdatos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jScrollPane1.setViewportView(txtdatos);
 
-        jButton2.setText("VOLVER");
-        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        botonvolver.setText("VOLVER");
+        botonvolver.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        botonvolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                botonvolverActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Arrendar");
+        jButton3.setBorder(new javax.swing.border.MatteBorder(null));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
             }
         });
 
@@ -100,38 +110,40 @@ public class Catalogo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(combo, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, 0)
-                                .addComponent(jLabel1)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())))
+                            .addComponent(combo, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botonverinfo, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
-                        .addGap(14, 14, 14))))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(botonvolver)
+                        .addGap(14, 14, 14))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(216, 216, 216)
+                .addComponent(jLabel1)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonverinfo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addGap(14, 14, 14))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addComponent(botonvolver)
+                .addGap(14, 14, 14))
         );
 
         pack();
@@ -143,7 +155,7 @@ public class Catalogo extends javax.swing.JFrame {
         
     }//GEN-LAST:event_comboActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void botonverinfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonverinfoActionPerformed
         
         ArrayList<String> pelis = videoClub.obtenerNombresPeliculas();
         
@@ -161,6 +173,7 @@ public class Catalogo extends javax.swing.JFrame {
         txtdatos.setWrapStyleWord(false);// Desactiva el ajuste de palabra
         txtdatos.setText(
         "Título: " + peli.getTitulo() + "\n" +
+        "Año: "+peli.getYear() +"\n"+
         "Género: " + peli.getGenero() + "\n" +
         "Sinopsis: " + peli.getSinopsis() + "\n" +
         "Existencias: " + peli.getExistencias() + "\n" +
@@ -168,15 +181,43 @@ public class Catalogo extends javax.swing.JFrame {
         "Precio de Arriendo: " + peli.getPrecioArriendo());
          
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_botonverinfoActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void botonvolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonvolverActionPerformed
         // TODO add your handling code here:
         ClienteNormal volver = new ClienteNormal(videoClub,cliente);
         volver.setVisible(true);
         this.dispose();
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_botonvolverActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        ArrayList<String> pelis = videoClub.obtenerNombresPeliculas();
+        
+        int indice = combo.getSelectedIndex();  
+        String nombrepeli  = "NOSEBUCO";
+        
+        for(int i = 0; i <= indice; i++){
+            nombrepeli = pelis.get(i);
+        }
+        
+        Pelicula peli = videoClub.buscarPeliculaPorNombre(nombrepeli);
+        
+        int i = JOptionPane.showConfirmDialog(this, "Seguro que quiere arrendar"); 
+        if (i == 0)
+        {
+            if(cliente.getSaldo()<peli.getPrecioArriendo())
+            {
+                JOptionPane.showMessageDialog(this, "Saldo insuficiente");
+            }else{
+                cliente.arrendarPelicula(videoClub, nombrepeli);
+                JOptionPane.showMessageDialog(this, "Agregada a mis peliculas");
+            }  
+        }
+        
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,9 +225,10 @@ public class Catalogo extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonverinfo;
+    private javax.swing.JButton botonvolver;
     private javax.swing.JComboBox<String> combo;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtdatos;

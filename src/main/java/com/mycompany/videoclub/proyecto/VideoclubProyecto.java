@@ -17,20 +17,22 @@ import java.io.*;
 
 public class VideoclubProyecto {
 
-   public static void main(String[] args) throws IOException {  
+   public static void main(String[] args) throws IOException 
+   {  
 
        
       
       
       //se inicializa el lector y se guarda el path hacia el proyecto
       String currentFolder = Paths.get("").toAbsolutePath().toString();
-      BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
       
-      int opcion; // inicializamos la variable opcion para las distintas funciones disponibles para el usuario
-
       //directorios para las peliculas
       String csvPeliculas = currentFolder + "/src/main/java/com/mycompany/videoclub/proyecto/datos/Peliculas.csv";
       String csvClientes = currentFolder + "/src/main/java/com/mycompany/videoclub/proyecto/datos/Clientes.csv";
+      
+      BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+      
+      int opcion; // inicializamos la variable opcion para las distintas funciones disponibles para el usuario
 
 
       Gestor videoclub = new Gestor();
@@ -41,24 +43,28 @@ public class VideoclubProyecto {
       videoclub.importarPeliculas(csvPeliculas);
       videoclub.importarClientes(csvClientes);
       
-      Portada inicio = new Portada(videoclub);
+       Cliente client = new Cliente("default", 0, "claveDefault");
+
+      Portada inicio = new Portada(videoclub,client);
       inicio.setVisible(true);
       inicio.setLocationRelativeTo(null);
+      
       
       //opcion de registro o inicio de sesión
       int option;
       System.out.println("1) Iniciar Sesión");
       System.out.println("2) Registrarse");
       option = Integer.parseInt(lector.readLine());
-
+      
       String cliente;
       String contra;
       //Cliente client = new Cliente("default", 0, "claveDefault");
       int money;
       int level;
       boolean ends = true;
-      Cliente client = new Cliente("default", 0, "claveDefault");
+      //Cliente client = new Cliente("default", 0, "claveDefault");
       
+    
        
        
       while(ends)
@@ -205,8 +211,8 @@ public class VideoclubProyecto {
          }
       }
    }
-
-
+   
+      
  
    
 
@@ -217,7 +223,8 @@ public class VideoclubProyecto {
 
    
    /* FUNCION HECHA PARA OPTIMIZACION
-   private static void crearCliente(BufferedReader lector, Gestor videoClub) throws IOException {
+private static void crearCliente(BufferedReader lector, Gestor videoClub) throws IOException 
+{
 
       
       String nombre = lector.readLine();
@@ -229,6 +236,7 @@ public class VideoclubProyecto {
       
    IMPORTAR CLIENTE
    DEVOLVER PELICULA - SACARSELA DE LA LISTA CLIENTE - AGREGAR UNA EXISTENCIA AL PELICULAS EXISTENTE
-   }
-   */
 }
+   */
+  }
+//}

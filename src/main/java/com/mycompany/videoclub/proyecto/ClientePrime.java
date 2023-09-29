@@ -23,6 +23,8 @@ public class ClientePrime extends Cliente{
     @Override
     public void agregarSaldo(double monto){
         switch(nivelMembresia){
+            case 0: 
+                saldo += monto;
             case 1:
                 saldo += monto + (monto*0.1);
                 break;

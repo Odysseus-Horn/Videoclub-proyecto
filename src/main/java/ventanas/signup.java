@@ -18,17 +18,19 @@ public class Signup extends javax.swing.JFrame {
     
     String currentFolder = Paths.get("").toAbsolutePath().toString();
     String csvClientes = currentFolder + "/src/main/java/com/mycompany/videoclub/proyecto/datos/Clientes.csv";
-
+    
     private Gestor videoClub;
+    private Cliente cliente;
     /**
      * Creates new form signup
      */
-    public Signup(Gestor club) {
+    public Signup(Gestor club,Cliente client) {
         initComponents();
         
         this.setLocationRelativeTo(null);
         
         videoClub = club;
+        cliente = client;
     }
 
     /**
@@ -152,7 +154,7 @@ public class Signup extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Portada volver = new Portada(videoClub);
+        Portada volver = new Portada(videoClub,cliente);
         volver.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed

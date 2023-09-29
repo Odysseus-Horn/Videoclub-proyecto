@@ -22,14 +22,16 @@ import com.mycompany.videoclub.proyecto.Cliente;
 public class Signin extends javax.swing.JFrame {
 
     private Gestor videoClub;
+    private Cliente cliente;
     /**
      * Creates new form signin
      */
-    public Signin(Gestor club) {
+    public Signin(Gestor club,Cliente client) {
         initComponents();
         
         this.setLocationRelativeTo(null);
         videoClub = club;
+        cliente = client;
     }
 
     /**
@@ -131,7 +133,7 @@ public class Signin extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Portada volver = new Portada(videoClub);
+        Portada volver = new Portada(videoClub,cliente);
         volver.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed

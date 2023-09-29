@@ -7,6 +7,7 @@ package ventanas;
 
 import com.mycompany.videoclub.proyecto.Cliente;
 import com.mycompany.videoclub.proyecto.Gestor;
+import java.nio.file.Paths;
 
 
 /**
@@ -14,18 +15,22 @@ import com.mycompany.videoclub.proyecto.Gestor;
  * @author cesar
  */
 public class Portada extends javax.swing.JFrame {
-    
+    /*
+    String currentFolder = Paths.get("").toAbsolutePath().toString();
+    String csvClientes = currentFolder + "/src/main/java/com/mycompany/videoclub/proyecto/datos/Clientes.csv";
+    */
     private Gestor videoClub ;
-    
+    private Cliente cliente;
     
     /**
      * Creates new form portada
      * 
      */
-    public Portada(Gestor club) {
+    public Portada(Gestor club,Cliente client) {
         initComponents();
         this.setLocationRelativeTo(null);
         videoClub = club;
+        cliente = client;
     }
 
     /**
@@ -94,13 +99,13 @@ public class Portada extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Signin inciarSesion = new Signin(videoClub);
+        Signin inciarSesion = new Signin(videoClub,cliente);
         inciarSesion.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Signup registrar = new Signup(videoClub);
+        Signup registrar = new Signup(videoClub,cliente);
         registrar.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
