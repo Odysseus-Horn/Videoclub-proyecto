@@ -177,10 +177,12 @@ public class PelisPosesion extends javax.swing.JFrame {
     }//GEN-LAST:event_botoninfoActionPerformed
 
     private void botondevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botondevolverActionPerformed
+        
         ArrayList<String> pelis = videoClub.obtenerNombresPeliculas();
         
         int indice = combo.getSelectedIndex();  
         String nombrepeli  = "NOSEBUCO";
+        
         
         for(int i = 0; i <= indice; i++){
             nombrepeli = pelis.get(i);
