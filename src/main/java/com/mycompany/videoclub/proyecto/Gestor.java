@@ -308,7 +308,15 @@ public class Gestor{
         }
         return null;
     }
-
+    public ArrayList<String> obtenerNombresPeliculas()
+    {
+        ArrayList<String> pelis = new ArrayList<String>();
+        for(Pelicula peli : listaPeliculas)
+        {
+            pelis.add(peli.getTitulo());
+        }
+        return pelis;
+    }
 
     public boolean existeCliente(String nombre)
     {

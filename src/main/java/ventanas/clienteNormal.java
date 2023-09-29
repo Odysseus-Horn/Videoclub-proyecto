@@ -74,23 +74,22 @@ public class ClienteNormal extends javax.swing.JFrame {
                 .addComponent(irInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(botonMostrar)))
-                .addGap(0, 222, Short.MAX_VALUE))
+                .addGap(86, 86, 86)
+                .addComponent(jLabel1)
+                .addGap(0, 283, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(botonMostrar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(48, 48, 48)
+                .addGap(57, 57, 57)
                 .addComponent(botonMostrar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 241, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 232, Short.MAX_VALUE)
                 .addComponent(irInicio)
                 .addContainerGap())
         );
@@ -112,8 +111,9 @@ public class ClienteNormal extends javax.swing.JFrame {
 
     private void botonMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMostrarActionPerformed
         // TODO add your handling code here:
-        Catalogo cat = new Catalogo(videoClub);
+        Catalogo cat = new Catalogo(videoClub,cliente);
         cat.setVisible(true);
+        this.dispose();
         
     }//GEN-LAST:event_botonMostrarActionPerformed
     
