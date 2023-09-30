@@ -251,8 +251,14 @@ public class Catalogo extends javax.swing.JFrame {
             {
                 JOptionPane.showMessageDialog(this, "Saldo insuficiente");
             }else{
-                cliente.arrendarPelicula(videoClub, nombrepeli);
-                JOptionPane.showMessageDialog(this, "Agregada a mis peliculas");
+                if(cliente.arrendarPelicula(videoClub, nombrepeli)){
+                    JOptionPane.showMessageDialog(this, "Agregada a mis peliculas");
+                    tusaldo();
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(this, "No quedan existencias de la película");
+                }
             }  
         }
         

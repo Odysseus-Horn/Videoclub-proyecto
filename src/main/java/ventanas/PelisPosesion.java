@@ -178,15 +178,10 @@ public class PelisPosesion extends javax.swing.JFrame {
 
     private void botondevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botondevolverActionPerformed
         
-        ArrayList<String> pelis = videoClub.obtenerNombresPeliculas();
-        
         int indice = combo.getSelectedIndex();  
         String nombrepeli  = "NOSEBUCO";
         
-        
-        for(int i = 0; i <= indice; i++){
-            nombrepeli = pelis.get(i);
-        }
+        nombrepeli = combo.getItemAt(indice);
         
         Pelicula peli = videoClub.buscarPeliculaPorNombre(nombrepeli);
         
@@ -194,9 +189,14 @@ public class PelisPosesion extends javax.swing.JFrame {
         if (i == 0)
         {
             
-            cliente.devolverPelicula(videoClub, nombrepeli);
+            cliente.devolverPelicula(videoClub, peli.getTitulo());
             JOptionPane.showMessageDialog(this, "PELICULA DEVUELTA");
-              
+            combo.removeAllItems();
+            
+            for(String pelis : cliente.peliculasArrendadas())
+            {
+                combo.addItem(pelis);
+            }
         }
     }//GEN-LAST:event_botondevolverActionPerformed
 
