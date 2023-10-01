@@ -202,28 +202,6 @@ public class Gestor{
         return agregarCliente(cliente);
     }
 
-    
-
- 
-    public boolean eliminarCliente(String key) {
-         Cliente clienteAEliminar = null;
-     
-         
-         for (Cliente cliente : listaClientes) {
-             if (cliente.getNombreUsuario().equals(key)) {
-                 clienteAEliminar = cliente;
-                 break;
-             }
-         }
-     
-         if (clienteAEliminar != null) {
-             listaClientes.remove(clienteAEliminar);
-             mapaClientes.remove(key);
-             return true;
-         } else {
-             return false; 
-         }
-    }
 
     public void mostrarClientes() {
         System.out.println("Lista de clientes:");
@@ -296,6 +274,7 @@ public class Gestor{
         }
     }
 
+    //se verifica que el cliente exista dentro del videoclub y que coincida su contraseña con la ingresada 
     public Cliente iniciarSesion(String nombre, String password)
     {
         if(mapaClientes.containsKey(nombre))
@@ -308,6 +287,7 @@ public class Gestor{
         }
         return null;
     }
+    //se obtiene una lista con los nombres de las peliculas del videoclub
     public ArrayList<String> obtenerNombresPeliculas()
     {
         ArrayList<String> pelis = new ArrayList<String>();
@@ -318,6 +298,7 @@ public class Gestor{
         return pelis;
     }
 
+    
     public boolean existeCliente(String nombre)
     {
         if(mapaClientes.containsKey(nombre))

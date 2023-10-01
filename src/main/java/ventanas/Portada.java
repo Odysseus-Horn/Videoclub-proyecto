@@ -8,8 +8,6 @@ package ventanas;
 import com.mycompany.videoclub.proyecto.Cliente;
 import com.mycompany.videoclub.proyecto.Gestor;
 import java.nio.file.Paths;
-
-
 /**
  *
  * @author cesar

@@ -62,7 +62,8 @@ public class Cliente {
     public void agregarSaldo(int monto) {
         saldo += monto;
     }
-
+    
+    //metodo para arrendar una pelicula
     public boolean arrendarPelicula(Gestor club, String nombre) {
         Pelicula peli = club.buscarPeliculaPorNombre(nombre);
     
@@ -81,10 +82,7 @@ public class Cliente {
     
             saldo -= peli.getPrecioArriendo();
             peli.reducirExistencias(1);
-            System.out.println(peli.getExistencias());
             peliculasEnPosesion.add(peli);
-    
-            System.out.println("Película arrendada exitosamente.");
             return true;
         } catch (PeliculaNoExisteException e) {
             System.out.println(e.getMessage());
@@ -98,7 +96,7 @@ public class Cliente {
         }
     }
     
-
+    //se muestra los datos de las peliculas que tiene el cliente
     public boolean mostrarPeliculasEnPosesion() {
         System.out.println("Películas que has arrendado");
         
@@ -120,6 +118,7 @@ public class Cliente {
         }
     }
 
+    //metodo para devolver una pelicula
     public boolean devolverPelicula(Gestor club, String nombrePeli)
     {
         Pelicula peli = club.buscarPeliculaPorNombre(nombrePeli);
@@ -156,6 +155,7 @@ public class Cliente {
         }
     }
 
+    //Devuelve la lista de los nombres de las peliculas arrendadas del usuario.
     public ArrayList<String> peliculasArrendadas()
     {   
         ArrayList<String> nombresPeliculas = new ArrayList<String>();

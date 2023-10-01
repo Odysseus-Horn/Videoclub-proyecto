@@ -13,9 +13,6 @@ import javax.swing.JOptionPane;
  * @author cesar
  */
 public class ClienteNormal extends javax.swing.JFrame {
-
-    
-    
     String currentFolder = Paths.get("").toAbsolutePath().toString();
       
       //directorios para las peliculas
@@ -59,8 +56,8 @@ public class ClienteNormal extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(450, 350));
-        setSize(new java.awt.Dimension(450, 350));
+        setPreferredSize(new java.awt.Dimension(550, 350));
+        setSize(new java.awt.Dimension(550, 350));
 
         irInicio.setText("EXIT");
         irInicio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));

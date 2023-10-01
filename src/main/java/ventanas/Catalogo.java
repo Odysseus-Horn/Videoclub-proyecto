@@ -196,7 +196,7 @@ public class Catalogo extends javax.swing.JFrame {
         //ArrayList<String> pelis = videoClub.obtenerNombresPeliculas();
         
         int indice = combo.getSelectedIndex();  
-        String nombrepeli  = "ELULYMELAMAMA";
+        String nombrepeli  = "aux";
         
         /*
         for(int i = 0; i <= indice; i++){
